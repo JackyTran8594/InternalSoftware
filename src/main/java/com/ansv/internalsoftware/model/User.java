@@ -51,4 +51,7 @@ public class User extends Auditable<String> implements Serializable {
     @ManyToMany(mappedBy = "users")
     private Set<Department> departments = new HashSet<>();
 
+    @ManyToOne()
+    @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")}, inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")})
+    private Role roles;
 }
