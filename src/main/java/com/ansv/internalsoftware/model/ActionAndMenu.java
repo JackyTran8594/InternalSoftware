@@ -18,6 +18,7 @@ import java.util.HashSet;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(name="action_and_menu")
 public class ActionAndMenu extends Auditable<String> implements Serializable {
     @Id
     @Column(name = "id")
@@ -26,6 +27,9 @@ public class ActionAndMenu extends Auditable<String> implements Serializable {
 
     @Column(name = "menu_name")
     private String menuName;
+
+    @Column(name = "menu_code")
+    private String menuCode;
 
     @Column(name = "action_code")
     private String actionCode;
@@ -40,4 +44,5 @@ public class ActionAndMenu extends Auditable<String> implements Serializable {
     @Fetch(FetchMode.JOIN)
     @JsonIgnore
     private Collection<User> usersRole = new HashSet<>();
+
 }

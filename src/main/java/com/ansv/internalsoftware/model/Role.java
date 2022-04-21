@@ -16,6 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
+@Table(name = "role")
 public class Role extends Auditable<String> implements Serializable {
 
     @Id
