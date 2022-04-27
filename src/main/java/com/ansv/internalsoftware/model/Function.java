@@ -5,21 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name="action_and_menu")
-public class ActionAndMenu extends Auditable<String> implements Serializable {
+@Table(name="function")
+public class Function extends Auditable<String> implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,9 +38,7 @@ public class ActionAndMenu extends Auditable<String> implements Serializable {
     @Column(name = "parent_code")
     private String parentCode;
 
-    @OneToMany(cascade = {CascadeType.ALL})
-    @Fetch(FetchMode.JOIN)
-    @JsonIgnore
-    private Collection<User> usersRole = new HashSet<>();
+    @ManyToMany(mappedBy = "functions", fetch = FetchType.LAZY)
+    private Set<Role> roles = new HashSet<>();
 
 }

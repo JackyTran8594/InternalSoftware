@@ -20,9 +20,9 @@ import java.util.Set;
 public class Role extends Auditable<String> implements Serializable {
 
     @Id
-    @Column(name = "role_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long roleId;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -33,8 +33,12 @@ public class Role extends Auditable<String> implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(cascade = {CascadeType.ALL})
-    @Fetch(FetchMode.JOIN)
+    @OneToOne
     @JsonIgnore
-    private Collection<User> usersRole = new HashSet<>();
+    private User user;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "role_function", joinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")},inverseJoinColumns ={@JoinColumn(name="function_id", referencedColumnName="id")})
+    @JsonIgnore
+    private Set<Function> functions;
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,8 +19,8 @@ import java.util.Set;
 public class User extends Auditable<String> implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long userId;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "username")
     private String username;
@@ -39,19 +40,15 @@ public class User extends Auditable<String> implements Serializable {
     @Column(name = "phone_number")
     private String phone_number;
 
-    @Column(name = "department_id")
-    private Long department_id;
-
     @Column(name = "position")
     private String position;
 
     @Column(name = "note")
     private String note;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private Set<Department> departments = new HashSet<>();
 
-    @ManyToOne()
-    @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")}, inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")})
-    private Role roles;
+    @OneToOne(mappedBy = "user")
+    private Role role;
 }
