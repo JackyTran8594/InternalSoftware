@@ -1,6 +1,7 @@
 package com.ansv.internalsoftware.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user")
+@Table(name = "`user`")
 public class User extends Auditable<String> implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,8 +48,11 @@ public class User extends Auditable<String> implements Serializable {
     private String note;
 
     @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Department> departments = new HashSet<>();
 
-    @OneToOne(mappedBy = "user")
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 }

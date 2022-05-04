@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1651663048610-1" author="Tran Tuan Vu (generated)">
+        <createTable tableName="role_function">
+            <column computed="false" name="role_id" type="BIGINT(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__role_fun__29C13F1C053A6589"/>
+            </column>
+            <column computed="false" name="function_id" type="BIGINT(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__role_fun__29C13F1C053A6589"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1651663048610-2" author="Tran Tuan Vu (generated)">
+        <createTable tableName="user">
+            <column autoIncrement="true" computed="false" name="id" type="BIGINT(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__user__3213E83FB3541DC6"/>
+            </column>
+            <column computed="false" name="created_by" type="VARCHAR(255)"/>
+            <column computed="false" name="created_date" type="datetime"/>
+            <column computed="false" name="last_modified_by" type="VARCHAR(255)"/>
+            <column computed="false" name="last_modified_date" type="datetime"/>
+            <column computed="false" name="code" type="VARCHAR(255)"/>
+            <column computed="false" name="email" type="VARCHAR(255)"/>
+            <column computed="false" name="full_name" type="VARCHAR(255)"/>
+            <column computed="false" name="note" type="VARCHAR(255)"/>
+            <column computed="false" name="password" type="VARCHAR(255)"/>
+            <column computed="false" name="phone_number" type="VARCHAR(255)"/>
+            <column computed="false" name="position" type="VARCHAR(255)"/>
+            <column computed="false" name="username" type="VARCHAR(255)"/>
+            <column computed="false" name="role_id" type="BIGINT(19)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1651663048610-3" author="Tran Tuan Vu (generated)">
+        <createTable tableName="department_user">
+            <column computed="false" name="deparment_id" type="BIGINT(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__departme__D803A25299446119"/>
+            </column>
+            <column computed="false" name="user_id" type="BIGINT(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__departme__D803A25299446119"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1651663048610-4" author="Tran Tuan Vu (generated)">
+        <createTable tableName="department">
+            <column autoIncrement="true" computed="false" name="id" type="BIGINT(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__departme__3213E83F17485FF5"/>
+            </column>
+            <column computed="false" name="created_by" type="VARCHAR(255)"/>
+            <column computed="false" name="created_date" type="datetime"/>
+            <column computed="false" name="last_modified_by" type="VARCHAR(255)"/>
+            <column computed="false" name="last_modified_date" type="datetime"/>
+            <column computed="false" name="code" type="VARCHAR(255)"/>
+            <column computed="false" name="description" type="VARCHAR(255)"/>
+            <column computed="false" name="name" type="VARCHAR(255)"/>
+            <column computed="false" name="note" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1651663048610-5" author="Tran Tuan Vu (generated)">
+        <createTable tableName="function">
+            <column autoIncrement="true" computed="false" name="id" type="BIGINT(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__function__3213E83F7A546616"/>
+            </column>
+            <column computed="false" name="created_by" type="VARCHAR(255)"/>
+            <column computed="false" name="created_date" type="datetime"/>
+            <column computed="false" name="last_modified_by" type="VARCHAR(255)"/>
+            <column computed="false" name="last_modified_date" type="datetime"/>
+            <column computed="false" name="action_code" type="VARCHAR(255)"/>
+            <column computed="false" name="description" type="VARCHAR(255)"/>
+            <column computed="false" name="menu_code" type="VARCHAR(255)"/>
+            <column computed="false" name="menu_name" type="VARCHAR(255)"/>
+            <column computed="false" name="parent_code" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1651663048610-6" author="Tran Tuan Vu (generated)">
+        <createTable tableName="role">
+            <column autoIncrement="true" computed="false" name="id" type="BIGINT(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__role__3213E83F96AD0F30"/>
+            </column>
+            <column computed="false" name="created_by" type="VARCHAR(255)"/>
+            <column computed="false" name="created_date" type="datetime"/>
+            <column computed="false" name="last_modified_by" type="VARCHAR(255)"/>
+            <column computed="false" name="last_modified_date" type="datetime"/>
+            <column computed="false" name="code" type="VARCHAR(255)"/>
+            <column computed="false" name="description" type="VARCHAR(255)"/>
+            <column computed="false" name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1651663048610-7" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="department_user"
+                                 constraintName="FKp3xhwq0ftw3reml4x0mcuc2wo" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1651663048610-8" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="function_id" baseTableName="role_function"
+                                 constraintName="FK4dphexeqfirp7d1tpy9lm4x7b" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="function"/>
+    </changeSet>
+    <changeSet id="1651663048610-9" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="role_function"
+                                 constraintName="FKnni0m4md3cq3f7wbwgrv9i5wb" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="role"/>
+    </changeSet>
+    <changeSet id="1651663048610-10" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user"
+                                 constraintName="FKcg8vm2yga4tm8kvsid9aqkt55" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="role"/>
+    </changeSet>
+    <changeSet id="1651663048610-11" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="deparment_id" baseTableName="department_user"
+                                 constraintName="FKlr3ycofbjej93p87qh1tue7rc" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="department"/>
+    </changeSet>
+
+</databaseChangeLog>

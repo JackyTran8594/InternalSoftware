@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "role")
+@Table(name = "`role`")
 public class Role extends Auditable<String> implements Serializable {
 
     @Id
@@ -33,12 +33,13 @@ public class Role extends Auditable<String> implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @OneToOne
-    @JsonIgnore
+    @OneToOne(mappedBy = "role")
     private User user;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "role_function", joinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")},inverseJoinColumns ={@JoinColumn(name="function_id", referencedColumnName="id")})
     @JsonIgnore
-    private Set<Function> functions;
+    private Set<Function> functions = new HashSet<>();
+
+
 }
