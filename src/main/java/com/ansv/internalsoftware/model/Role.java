@@ -2,12 +2,9 @@ package com.ansv.internalsoftware.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,7 +31,7 @@ public class Role extends Auditable<String> implements Serializable {
     private String description;
 
     @OneToOne(mappedBy = "role")
-    private User user;
+    private UserEntity user;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "role_function", joinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")},inverseJoinColumns ={@JoinColumn(name="function_id", referencedColumnName="id")})

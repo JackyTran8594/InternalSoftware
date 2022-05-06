@@ -42,4 +42,7 @@ public abstract class Auditable<T> implements Serializable {
     @Column(name = "last_modified_date")
     protected LocalDateTime lastModifiedDate;
 
+    @Column(name = "status")
+    protected String status;
+
 }

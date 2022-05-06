@@ -1,7 +1,11 @@
 package com.ansv.internalsoftware.config.security;
 
+import com.ansv.internalsoftware.service.Impl.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.ContentCachingResponseWrapper;
@@ -18,6 +22,7 @@ import java.io.IOException;
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     private final JwtTokenProvider jwtTokenProvider;
+    private final UserDetailsServiceImpl userDetailsServiceImpl;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -45,6 +50,23 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             }
         }
 
-//        if ()
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null) {
+            Object principal = authentication.getPrincipal();
+            if (principal instanceof UserDetails) {
+                logger.info("------SecurityContextHolder getPrincipal UserDetails:" + ((UserDetails) principal).getUsername());
+            } else {
+                logger.info("------SecurityContextHolder getPrincipal :" + principal);
+            }
+        }
+
+        // Once we get the token validate it.
+        if (username != null && (authentication == null || "anonymousUser".equals((String) authentication.getPrincipal()))) {
+            UserDetails userDetails = this.userDetailsServiceImpl.loadUserByUsername(username);
+            // if token is valid configure Spring Security to manually set authentication
+//            if(jwtTokenProvider)
+        }
+
     }
 }

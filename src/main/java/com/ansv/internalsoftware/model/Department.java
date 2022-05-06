@@ -35,11 +35,8 @@ public class Department extends Auditable<String> implements Serializable {
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name="department_user", joinColumns = {@JoinColumn(name = "deparment_id", referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
-    private Set<User> users = new HashSet<>();
+    private Set<UserEntity> users = new HashSet<>();
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "department_id", referencedColumnName="id")
-//    private DepartmentUser departmentUser;
 
 
 
