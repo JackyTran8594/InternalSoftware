@@ -4,7 +4,12 @@ import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.ldap.userdetails.LdapUserDetailsImpl;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
+import java.util.List;
 
 
 @Component
@@ -21,6 +26,20 @@ public class JwtTokenProvider {
     public String getUsernameFromToken(String token) {
         Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
         return claims.getSubject().toString();
+    }
+
+    // using LDAP to authenticate
+    public String generateToken(Authentication authentication, String role, List<String> permissions) {
+            LdapUserDetailsImpl user = (LdapUserDetailsImpl)authentication.getPrincipal();
+        Date now = new Date();
+        Date expriryDate= new Date(now.getTime() + JWT_TOKEN_VALIDITY);
+        return Jwts.builder().setSubject(user.getUsername()).setIssuedAt(now).setExpiration(expriryDate).signWith(SignatureAlgorithm.HS512, jwtSecret).claim("role", role).claim("permissions", permissions).compact();
+    }
+
+    public String generateToken(String username, String role, List<String> permissions) {
+        Date now = new Date();
+        Date expriryDate= new Date(now.getTime() + JWT_TOKEN_VALIDITY);
+        return Jwts.builder().setSubject(username).setIssuedAt(now).setExpiration(expriryDate).signWith(SignatureAlgorithm.HS512, jwtSecret).claim("role", role).claim("permissions", permissions).compact();
     }
 
     public boolean validateToken(String token) {
@@ -40,6 +59,7 @@ public class JwtTokenProvider {
         }
         return false;
     }
+
 
 
 }
