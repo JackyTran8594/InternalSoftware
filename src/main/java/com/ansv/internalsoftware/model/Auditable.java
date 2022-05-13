@@ -1,5 +1,7 @@
 package com.ansv.internalsoftware.model;
 
+import com.ansv.internalsoftware.config.formatdate.LocalDateTimeDeserializer;
+import com.ansv.internalsoftware.config.formatdate.LocalDateTimeSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
@@ -28,18 +30,26 @@ import java.time.LocalDateTime;
 public abstract class Auditable<T> implements Serializable {
     @CreatedBy
     @Column(name = "created_by")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     protected T createdBy;
 
     @CreatedDate
     @Column(name = "created_date")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     protected LocalDateTime createdDate;
 
     @LastModifiedBy
     @Column(name = "last_modified_by")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     protected T lastModifiedBy;
 
     @LastModifiedDate
     @Column(name = "last_modified_date")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     protected LocalDateTime lastModifiedDate;
 
     @Column(name = "status")

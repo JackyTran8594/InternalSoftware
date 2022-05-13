@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.dto.response;
+package com.ansv.internalsoftware.security;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

@@ -1,13 +1,16 @@
 package com.ansv.internalsoftware.controller;
 
 import com.ansv.internalsoftware.config.security.JwtTokenProvider;
+//import com.ansv.internalsoftware.config.security.LdapAuthSecurityConfig;
 import com.ansv.internalsoftware.constants.MessageConstans;
-import com.ansv.internalsoftware.dto.response.JwtAuthenticationResponse;
-import com.ansv.internalsoftware.dto.response.MessageResponse;
+import com.ansv.internalsoftware.security.JwtAuthenticationResponse;
+import com.ansv.internalsoftware.security.MessageResponse;
 import com.ansv.internalsoftware.service.Impl.UserDetailsServiceImpl;
 import com.ansv.internalsoftware.util.DataUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,20 +32,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+//@Import(LdapAuthSecurityConfig.class)
 @Slf4j
 @RestController
-@RequestMapping("api/auth")
+@RequestMapping(value = "/api/auth")
 public class AuthenticationController {
 
     @Autowired
-    public AuthenticationManager authenticationManager;
+    @Qualifier("authenticationManagerBean")
+    private AuthenticationManager authenticationManager;
 
     @Autowired
-    JwtTokenProvider jwtTokenProvider;
+    private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    UserDetailsServiceImpl userDetailsServiceImpl;
+    private UserDetailsServiceImpl userDetailsServiceImpl;
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(@RequestBody LoginRequest loginRequest) {
         if (loginRequest.getUsername().isEmpty() || loginRequest.getPassword().isEmpty()) {

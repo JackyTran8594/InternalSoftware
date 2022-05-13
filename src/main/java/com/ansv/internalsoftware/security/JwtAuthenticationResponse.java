@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.dto.response;
+package com.ansv.internalsoftware.security;
 
 import com.ansv.internalsoftware.util.DataUtils;
 import lombok.Data;
