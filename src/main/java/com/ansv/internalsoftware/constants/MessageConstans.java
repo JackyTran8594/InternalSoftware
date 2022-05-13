@@ -1,5 +1,8 @@
 package com.ansv.internalsoftware.constants;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public interface MessageConstans {
     String INVALID_TOKEN = "Invalid Token";
     String VALID_TOKEN = "Valid token for user ";

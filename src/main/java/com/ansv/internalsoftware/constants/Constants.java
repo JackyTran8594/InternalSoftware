@@ -1,5 +1,8 @@
 package com.ansv.internalsoftware.constants;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Constants {
 
     public static final long JWT_AUTH_TOKEN_VALIDITY = 604800000;

@@ -22,7 +22,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import javax.servlet.http.HttpServletResponse;
 
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
@@ -32,23 +31,24 @@ public class JwtAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    private JwtRequestFilter jwtRequestFilter;
+    private final JwtRequestFilter jwtRequestFilter;
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-//        authenticationManagerBuilder.inMemoryAuthentication().withUser("superadmin").password(passwordEncoder().encode("admin@123"));
-        authenticationManagerBuilder.inMemoryAuthentication().withUser("adminansv").password(passwordEncoder().encode("admin@123")).roles("ADMIN");
-//        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    @Override
+    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        // authenticationManagerBuilder.inMemoryAuthentication().withUser("superadmin").password(passwordEncoder().encode("admin@123"));
+        authenticationManagerBuilder.inMemoryAuthentication().withUser("adminansv")
+                .password(passwordEncoder().encode("admin@123")).roles("ADMIN");
+        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        enable cors and disable csrf
+        // enable cors and disable csrf
         http.cors().disable();
         http.csrf().disable();
 
-//        set session management to stateless
+        // set session management to stateless
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and();
 
         // set unauthorized requests exception handler
@@ -56,38 +56,32 @@ public class JwtAuthSecurityConfig extends WebSecurityConfigurerAdapter {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, ex.getMessage());
         }).and();
 
-        http.authorizeRequests().anyRequest().permitAll();
-        
+        // http.authorizeRequests().anyRequest().permitAll();
 
         // set permission on endpoints
-        // http.authorizeRequests()
-        //         // public endpoints
-        //         .antMatchers("/**").permitAll()
-        //         .antMatchers("/api/**").permitAll()
-        //         .antMatchers("/api/auth/**").permitAll()
-        //        .antMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+        http.authorizeRequests()
+        // public endpoints
+        .antMatchers("/api/auth/**").permitAll()
+        // .antMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
 
+        // private endpoints
+        .antMatchers("/api/user/**").permitAll()
 
-        //         // private endpoints
-        //         .antMatchers("/api/user/**").permitAll()
-
-        //         .anyRequest().authenticated();
+        .anyRequest().authenticated();
 
         // add jwt token filter
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder()
-    {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean(BeanIds.AUTHENTICATION_MANAGER)
+    @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
 
 }

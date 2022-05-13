@@ -1,5 +1,6 @@
 package com.ansv.internalsoftware.controller;
 
+import com.ansv.internalsoftware.config.security.JwtAuthSecurityConfig;
 import com.ansv.internalsoftware.config.security.JwtTokenProvider;
 //import com.ansv.internalsoftware.config.security.LdapAuthSecurityConfig;
 import com.ansv.internalsoftware.constants.MessageConstans;
@@ -32,14 +33,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-//@Import(LdapAuthSecurityConfig.class)
+// @Import(JwtAuthSecurityConfig.class)
 @Slf4j
 @RestController
 @RequestMapping(value = "/api/auth")
 public class AuthenticationController {
 
-    @Autowired
-    @Qualifier("authenticationManagerBean")
+  
+    // @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired

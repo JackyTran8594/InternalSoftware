@@ -2,8 +2,13 @@ package com.ansv.internalsoftware.config.security;
 
 import com.ansv.internalsoftware.service.Impl.UserDetailsServiceImpl;
 import com.ansv.internalsoftware.util.JwtTokenUtil;
+
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -80,6 +85,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         }
+        ContentCachingResponseWrapper responseCacheWrapperObject = new ContentCachingResponseWrapper((HttpServletResponse) response);
+        filterChain.doFilter(request, responseCacheWrapperObject);
 
     }
 }

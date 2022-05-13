@@ -1,25 +1,25 @@
-package com.ansv.internalsoftware.config;
+// package com.ansv.internalsoftware.config;
 
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.ldap.core.DirContextOperations;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.ldap.userdetails.LdapAuthoritiesPopulator;
-import org.springframework.stereotype.Component;
+// import lombok.RequiredArgsConstructor;
+// import lombok.extern.slf4j.Slf4j;
+// import org.springframework.ldap.core.DirContextOperations;
+// import org.springframework.security.core.GrantedAuthority;
+// import org.springframework.security.core.userdetails.UserDetailsService;
+// import org.springframework.security.ldap.userdetails.LdapAuthoritiesPopulator;
+// import org.springframework.stereotype.Component;
 
-import java.util.Collection;
-@Slf4j
-@Component
-@RequiredArgsConstructor
-public class LdapUserAuthoritiesPopulator implements LdapAuthoritiesPopulator {
+// import java.util.Collection;
+// @Slf4j
+// @Component
+// @RequiredArgsConstructor
+// public class LdapUserAuthoritiesPopulator implements LdapAuthoritiesPopulator {
 
-    private final UserDetailsService userDetailsService;
+//     private final UserDetailsService userDetailsService;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getGrantedAuthorities(DirContextOperations userData, String username) {
+//     @Override
+//     public Collection<? extends GrantedAuthority> getGrantedAuthorities(DirContextOperations userData, String username) {
 
-        return userDetailsService.loadUserByUsername(username).getAuthorities();
-    }
-}
+//         return userDetailsService.loadUserByUsername(username).getAuthorities();
+//     }
+// }

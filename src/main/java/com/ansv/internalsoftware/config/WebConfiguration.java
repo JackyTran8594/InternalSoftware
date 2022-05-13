@@ -12,10 +12,10 @@ import java.util.Locale;
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
-
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedMethods("*").allowedOrigins("*").allowCredentials(true);
+        registry.addMapping("/**").allowedMethods("*").allowedOriginPatterns("http://localhost:8080")
+                .allowCredentials(true);
     }
 
     /* Create localeResolver Bean */
@@ -25,4 +25,5 @@ public class WebConfiguration implements WebMvcConfigurer {
         resolver.setDefaultLocale(new Locale("vi", "VN"));
         return resolver;
     }
+
 }
