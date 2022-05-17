@@ -8,10 +8,13 @@ import com.ansv.internalsoftware.security.JwtAuthenticationResponse;
 import com.ansv.internalsoftware.security.MessageResponse;
 import com.ansv.internalsoftware.service.Impl.UserDetailsServiceImpl;
 import com.ansv.internalsoftware.util.DataUtils;
+import com.google.gson.Gson;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,11 +24,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.ansv.internalsoftware.dto.request.LoginRequest;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -50,7 +49,7 @@ public class AuthenticationController {
     private UserDetailsServiceImpl userDetailsServiceImpl;
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    @PostMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     // @ResponseBody
     public ResponseEntity<?> authenticate(@RequestBody LoginRequest loginRequest) {
         if (loginRequest.getUsername().isEmpty() || loginRequest.getPassword().isEmpty()) {
@@ -94,11 +93,13 @@ public class AuthenticationController {
                             + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
                 }
             }
-            JwtAuthenticationResponse jwtAuth = new JwtAuthenticationResponse(jwt, userDetails);
-            ResponseEntity<?> response = null;
-            response = new ResponseEntity<>(jwtAuth.getAccessToken(), HttpStatus.OK);
+            JwtAuthenticationResponse jwtAuth = new JwtAuthenticationResponse(jwt, userDetails.getUsername(), role);
+            // ResponseEntity<?> response = null;
+            // response = new ResponseEntity<String>("jwtAuth", HttpStatus.OK);
             // return response;
-            return ResponseEntity.ok(jwtAuth.getAccessToken());
+            // return ResponseEntity.ok().body(jwtAuth);
+            return new ResponseEntity(new MessageResponse(true, "done"),
+                    HttpStatus.OK);
 
         } catch (BadCredentialsException e) {
             log.error(e.getMessage(), e);
