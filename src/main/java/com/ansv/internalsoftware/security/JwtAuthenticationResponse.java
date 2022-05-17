@@ -2,6 +2,9 @@ package com.ansv.internalsoftware.security;
 
 import com.ansv.internalsoftware.util.DataUtils;
 import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,7 +14,10 @@ import java.util.Arrays;
 
 import static com.ansv.internalsoftware.constants.Constants.JWT_AUTH_TOKEN_VALIDITY;
 
-@Data
+// @Data
+@Setter
+@Getter
+@RequiredArgsConstructor
 public class JwtAuthenticationResponse {
     private String accessToken;
     private String tokenType = "Bearer";
@@ -32,8 +38,9 @@ public class JwtAuthenticationResponse {
         if (userDetails != null) {
             this.username = userDetails.getUsername();
             if (DataUtils.notNullOrEmpty(userDetails.getAuthorities())) {
-                role = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
-//                permissions = role;
+                role = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority)
+                        .collect(Collectors.toList());
+                permissions = role;
             }
         }
     }
@@ -47,7 +54,6 @@ public class JwtAuthenticationResponse {
         this.username = username;
         this.role = Arrays.asList(role);
         this.permissions = Arrays.asList(role);
-
 
     }
 }

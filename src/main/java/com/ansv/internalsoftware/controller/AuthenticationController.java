@@ -24,6 +24,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.ansv.internalsoftware.dto.request.LoginRequest;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,11 +37,10 @@ import java.util.stream.Collectors;
 // @Import(JwtAuthSecurityConfig.class)
 @Slf4j
 @RestController
-@RequestMapping(value = "/api/auth")
+@RequestMapping("/api/auth")
 public class AuthenticationController {
 
-  
-    // @Autowired
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
@@ -49,18 +49,19 @@ public class AuthenticationController {
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @PostMapping("/login")
+    // @ResponseBody
     public ResponseEntity<?> authenticate(@RequestBody LoginRequest loginRequest) {
         if (loginRequest.getUsername().isEmpty() || loginRequest.getPassword().isEmpty()) {
-            return new ResponseEntity(new MessageResponse(false, MessageConstans.USERNAME_OR_PASSWORD_EMPTY), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new MessageResponse(false, MessageConstans.USERNAME_OR_PASSWORD_EMPTY),
+                    HttpStatus.BAD_REQUEST);
         }
         try {
 
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                     loginRequest.getUsername(),
-                    loginRequest.getPassword()
-            ));
+                    loginRequest.getPassword()));
 
             List<String> permission = new ArrayList<>();
             UserDetails userDetails = null;
@@ -83,25 +84,31 @@ public class AuthenticationController {
                         log.info("----SecurityContextHolder getPrincipal UserDetails:" + userDetails.getUsername());
                         if (DataUtils.notNullOrEmpty(userDetails.getAuthorities())) {
                             role = "USER";
-                            permissions = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
+                            permissions = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority)
+                                    .collect(Collectors.toList());
                             jwt = jwtTokenProvider.generateToken(userDetails.getUsername(), role, permissions);
                         }
                     }
                 } else {
-                    log.info("----SecurityContextHolder getPrincipal UserDetails:" + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+                    log.info("----SecurityContextHolder getPrincipal UserDetails:"
+                            + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
                 }
             }
-
-            return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, userDetails));
-
+            JwtAuthenticationResponse jwtAuth = new JwtAuthenticationResponse(jwt, userDetails);
+            ResponseEntity<?> response = null;
+            response = new ResponseEntity<>(jwtAuth.getAccessToken(), HttpStatus.OK);
+            // return response;
+            return ResponseEntity.ok(jwtAuth.getAccessToken());
 
         } catch (BadCredentialsException e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(new MessageResponse(false, MessageConstans.USERNAME_OR_PASSWORD_INVALID), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new MessageResponse(false, MessageConstans.USERNAME_OR_PASSWORD_INVALID),
+                    HttpStatus.BAD_REQUEST);
 
         } catch (UsernameNotFoundException e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(new MessageResponse(false, MessageConstans.USERNAME_INACTIVE), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new MessageResponse(false, MessageConstans.USERNAME_INACTIVE),
+                    HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return new ResponseEntity(new MessageResponse(false, MessageConstans.SYSTEM_ERROR), HttpStatus.BAD_REQUEST);
