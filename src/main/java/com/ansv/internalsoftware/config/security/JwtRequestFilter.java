@@ -87,6 +87,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
         ContentCachingResponseWrapper responseCacheWrapperObject = new ContentCachingResponseWrapper((HttpServletResponse) response);
         filterChain.doFilter(request, responseCacheWrapperObject);
+        // copy body to response
+        responseCacheWrapperObject.copyBodyToResponse();
 
     }
 }

@@ -97,9 +97,9 @@ public class AuthenticationController {
             // ResponseEntity<?> response = null;
             // response = new ResponseEntity<String>("jwtAuth", HttpStatus.OK);
             // return response;
-            // return ResponseEntity.ok().body(jwtAuth);
-            return new ResponseEntity(new MessageResponse(true, "done"),
-                    HttpStatus.OK);
+             return ResponseEntity.ok().body(jwtAuth);
+//            return new ResponseEntity(new MessageResponse(true, "done"),
+//                    HttpStatus.OK);
 
         } catch (BadCredentialsException e) {
             log.error(e.getMessage(), e);
