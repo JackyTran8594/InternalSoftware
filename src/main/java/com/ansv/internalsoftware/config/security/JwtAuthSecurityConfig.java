@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
-// @Profile(Profiles.JWT_AUTH)
+@Profile(Profiles.JWT_AUTH_STAGING)
 @RequiredArgsConstructor
 public class JwtAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 

@@ -46,18 +46,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
             }
             newUser = new User(user.getUsername(), user.getPassword(), buildSimpleGrantedAuthorities(roles, role));
+        } else {
+//            creating if user isn't exist in db
+            log.warn("User not found with username ----> create in db", username);
+            user = new UserEntity();
+            user.setUsername(username);
+            user.setStatus("ACTIVE");
+            user.setPassword(username);
+            userRepository.save(user);
+            return new User(user.getUsername(), user.getPassword(), buildSimpleGrantedAuthorities(new ArrayList<>(), new ArrayList<>()));
         }
-
-//        else {
-////            creating if user isn't exist in db
-//            log.warn("User not found with username ----> create in db", username);
-//            user = new UserEntity();
-//            user.setUsername(username);
-//            user.setStatus("ACTIVE");
-//            user.setPassword(username);
-//            userRepository.save(user);
-//            return new User(user.getUsername(), user.getPassword(), buildSimpleGrantedAuthorities(new ArrayList<>(), new ArrayList<>()));
-//        }
         return newUser;
     }
 

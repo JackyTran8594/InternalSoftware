@@ -1,12 +1,7 @@
 package com.ansv.internalsoftware.security;
 
 import com.ansv.internalsoftware.util.DataUtils;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.Data;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,13 +11,10 @@ import java.util.Arrays;
 
 import static com.ansv.internalsoftware.constants.Constants.JWT_AUTH_TOKEN_VALIDITY;
 
-// @Data
-// @Setter
-// @Getter
-// @RequiredArgsConstructor
+@Data
 public class JwtAuthenticationResponse {
 
-   
+
     private String accessToken;
     private String tokenType = "Bearer";
     private boolean success = false;
@@ -91,7 +83,6 @@ public class JwtAuthenticationResponse {
     public void setPermissions(List<String> permissions) {
         this.permissions = permissions;
     }
-
 
 
     public JwtAuthenticationResponse(String accessToken, UserDetails userDetails) {
