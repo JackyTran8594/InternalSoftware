@@ -16,13 +16,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static org.springframework.ldap.query.LdapQueryBuilder.query;
 
 @Component
 public class LdapAuthenticationProvider implements AuthenticationProvider {
 
     private Environment environment;
 
-//    @Value("${spring.ldap.server.url}")
+    //    @Value("${spring.ldap.server.url}")
     private String url = "ldap://172.24.104.6:389";
     private String userDn = "CN=Users,DC=ansv,DC=vn";
     private String base = "DC=ansv,DC=vn";
@@ -33,37 +36,42 @@ public class LdapAuthenticationProvider implements AuthenticationProvider {
     private LdapContextSource contextSource;
     private LdapTemplate ldapTemplate;
 
-    private void initContext()
-    {
+
+    private void initContext() {
         contextSource = new LdapContextSource();
         contextSource.setUrl(url);
         contextSource.setAnonymousReadOnly(true);
-//        contextSource.setUserDn(userDn);
-//        contextSource.setBase(base);
+        contextSource.setUserDn(userDn);
+        contextSource.setBase(base);
+//        contextSource.setPassword(password);
+
         contextSource.afterPropertiesSet();
 
         ldapTemplate = new LdapTemplate(contextSource);
     }
 
     public LdapAuthenticationProvider(Environment environment) {
-            this.environment = environment;
+        this.environment = environment;
     }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         initContext();
         Filter filter = new EqualsFilter("userPrincipalName", authentication.getPrincipal().toString());
-        Boolean authenticate = ldapTemplate.authenticate(LdapUtils.newLdapName(userDn), filter.encode(), authentication.getCredentials().toString());
-        if (authenticate)
-        {
+
+//        User user = ldapTemplate.findOne(query().base(userDn).where(filter.encode()), User.class);
+
+        Boolean authenticate = ldapTemplate
+                .authenticate(LdapUtils.newLdapName(userDn), filter.encode(), authentication.getCredentials().toString());
+
+
+        if (authenticate) {
             UserDetails userDetails = new User(authentication.getName(), authentication.getCredentials().toString()
                     , new ArrayList<>());
             Authentication auth = new UsernamePasswordAuthenticationToken(userDetails,
                     authentication.getCredentials().toString(), new ArrayList<>());
             return auth;
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
