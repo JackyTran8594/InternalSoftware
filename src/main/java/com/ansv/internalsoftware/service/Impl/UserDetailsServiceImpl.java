@@ -54,7 +54,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             user.setStatus("ACTIVE");
             user.setPassword(username);
             userRepository.save(user);
-            return new User(user.getUsername(), user.getPassword(), buildSimpleGrantedAuthorities(new ArrayList<>(), new ArrayList<>()));
+            newUser =  new User(user.getUsername(), user.getPassword(), buildSimpleGrantedAuthorities(new ArrayList<>(), new ArrayList<>()));
+            return newUser;
         }
         return newUser;
     }

@@ -48,7 +48,7 @@ public class LdapAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 //    @Autowired
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         try {
-//            authenticationManagerBuilder.inMemoryAuthentication().withUser("adminansv").password(passwordEncoder().encode("admin@123")).roles("ADMIN");
+            authenticationManagerBuilder.inMemoryAuthentication().withUser("adminansv").password(passwordEncoder().encode("admin@123")).roles("ADMIN");
 //            authenticationManagerBuilder.authenticationProvider(new LdapAuthenticationProvider(env)).eraseCredentials(false);
             authenticationManagerBuilder
                     .ldapAuthentication()
