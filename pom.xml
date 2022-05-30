@@ -149,8 +149,11 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>3.4.1</version>
                 <configuration>
-                    <propertyFile>src/main/resources/liquibase.properties</propertyFile>
-                    <changeLogFile>src/main/resources/db/changelog/changelog.xml</changeLogFile>
+                    <propertyFile>${project.basedir}/src/main/resources/liquibase.properties</propertyFile>
+                    <changeLogFile>${project.basedir}/src/main/resources/db/changelog/changelog.xml</changeLogFile>
+                    <outputChangeLogFile>changelog.xml</outputChangeLogFile>
+                    <diffChangeLogFile>${project.basedir}/src/main/resources/db/changelog/migrations/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
+                    <logging>debug</logging>
                 </configuration>
             </plugin>
         </plugins>

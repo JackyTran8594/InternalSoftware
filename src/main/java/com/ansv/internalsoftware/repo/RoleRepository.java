@@ -1,6 +1,6 @@
 package com.ansv.internalsoftware.repo;
 
-import com.ansv.internalsoftware.model.Role;
+import com.ansv.internalsoftware.modal.Role;
 import com.ansv.internalsoftware.repo.custom.UserRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

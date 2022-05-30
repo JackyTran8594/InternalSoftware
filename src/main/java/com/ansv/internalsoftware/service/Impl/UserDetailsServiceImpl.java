@@ -1,7 +1,7 @@
 package com.ansv.internalsoftware.service.Impl;
 
-import com.ansv.internalsoftware.model.Role;
-import com.ansv.internalsoftware.model.UserEntity;
+import com.ansv.internalsoftware.modal.Role;
+import com.ansv.internalsoftware.modal.UserEntity;
 import com.ansv.internalsoftware.repo.RoleRepository;
 import com.ansv.internalsoftware.repo.UserRepository;
 import com.ansv.internalsoftware.util.DataUtils;

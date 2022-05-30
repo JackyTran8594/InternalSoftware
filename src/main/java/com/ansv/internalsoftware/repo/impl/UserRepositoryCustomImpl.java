@@ -1,6 +1,6 @@
 package com.ansv.internalsoftware.repo.impl;
 
-import com.ansv.internalsoftware.model.UserEntity;
+import com.ansv.internalsoftware.modal.UserEntity;
 import com.ansv.internalsoftware.repo.base.BaseRepository;
 import com.ansv.internalsoftware.repo.custom.UserRepositoryCustom;
 

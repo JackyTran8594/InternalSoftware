@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.model;
+package com.ansv.internalsoftware.modal;
 
 import com.ansv.internalsoftware.config.formatdate.LocalDateTimeDeserializer;
 import com.ansv.internalsoftware.config.formatdate.LocalDateTimeSerializer;
@@ -30,8 +30,6 @@ import java.time.LocalDateTime;
 public abstract class Auditable<T> implements Serializable {
     @CreatedBy
     @Column(name = "created_by")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     protected T createdBy;
 
     @CreatedDate
@@ -42,8 +40,6 @@ public abstract class Auditable<T> implements Serializable {
 
     @LastModifiedBy
     @Column(name = "last_modified_by")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     protected T lastModifiedBy;
 
     @LastModifiedDate
@@ -52,7 +48,7 @@ public abstract class Auditable<T> implements Serializable {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     protected LocalDateTime lastModifiedDate;
 
-    @Column(name = "status")
+    @Column(name = "status", length = 20)
     protected String status;
 
 }

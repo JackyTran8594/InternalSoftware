@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.model;
+package com.ansv.internalsoftware.modal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
