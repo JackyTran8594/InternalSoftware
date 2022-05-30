@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.modal;
+package com.ansv.internalsoftware.model;
 
 import com.ansv.internalsoftware.config.formatdate.LocalDateTimeDeserializer;
 import com.ansv.internalsoftware.config.formatdate.LocalDateTimeSerializer;
@@ -20,8 +20,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "`delivery_package`")
-public class DeliveryPackage extends Auditable<String> implements Serializable {
+@Table(name = "`period_order`")
+public class PeriodOrder extends Auditable<String> implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -30,11 +30,8 @@ public class DeliveryPackage extends Auditable<String> implements Serializable {
     @Column(name = "PO_code", length = 100)
     private String poCode;
 
-    @Column(name = "contract_code", length = 100)
-    private String contractCode;
-
-    @Column(name = "DP_code", length = 50)
-    private String dpCode;
+    @Column(name = "PO_number")
+    private Integer poNumber;
 
     @Column(name = "description", length = 500, columnDefinition = "nvarchar")
     private String description;
@@ -42,26 +39,35 @@ public class DeliveryPackage extends Auditable<String> implements Serializable {
     @Column(name = "value", precision = 18, scale = 2)
     private BigDecimal value;
 
+    @Column(name = "payment_content", columnDefinition = "nvarchar", length = 500)
+    private String paymentContent;
+
+    @Column(name = "bank_guarantee", length = 50)
+    private String bankGuarantee;
+
     @Column(name = "address", columnDefinition = "nvarchar", length = 500)
     private String address;
 
-    @Column(name = "province_id")
-    private Long provinceId;
-
-
-    @Column(name = "DP_date")
+    @Column(name = "PO_date")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime pdDate;
+    private LocalDateTime poDate;
+
+    @Column(name = "timeline")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime timeLine;
 
     @Column(name = "note", columnDefinition="nvarchar" ,length = 500)
     private String note;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=true)
-    private PeriodOrder periodOrder;
+    @JoinColumn(name="contract_id", nullable=true, referencedColumnName = "id")
+    private Contract contract;
 
-    @OneToMany(mappedBy="deliveryPackage")
-    private Set<PackingList> packingList;
+    @OneToMany(mappedBy="periodOrder")
+    private Set<ProductService> productService;
 
+    @OneToMany(mappedBy="periodOrder")
+    private Set<DeliveryPackage> deliveryPackage;
 }

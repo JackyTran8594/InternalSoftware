@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.modal;
+package com.ansv.internalsoftware.model;
 
 
 import lombok.AllArgsConstructor;
@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -30,4 +31,7 @@ public class Config extends Auditable<String> implements Serializable {
 
     @Column(name = "note", columnDefinition="nvarchar" ,length = 500)
     private String note;
+
+    @OneToMany(mappedBy = "config")
+    private Set<ConfigValue> configValue;
 }

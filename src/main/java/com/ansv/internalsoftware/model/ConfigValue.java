@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.modal;
+package com.ansv.internalsoftware.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,4 +31,8 @@ public class ConfigValue extends Auditable<String> implements Serializable {
 
     @Column(name = "note", columnDefinition="nvarchar" ,length = 500)
     private String note;
+
+    @ManyToOne
+    @JoinColumn(name="config_id", nullable=true, referencedColumnName = "id")
+    private Config config;
 }

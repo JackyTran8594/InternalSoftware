@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.modal;
+package com.ansv.internalsoftware.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,7 +36,7 @@ public class BankGuarantee extends Auditable<String> implements Serializable {
     private String note;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=true)
+    @JoinColumn(name="contract_id", nullable=true, referencedColumnName = "id")
     private Contract contract;
 
 }

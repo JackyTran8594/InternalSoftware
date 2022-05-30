@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.modal;
+package com.ansv.internalsoftware.model;
 
 import com.ansv.internalsoftware.config.formatdate.LocalDateTimeDeserializer;
 import com.ansv.internalsoftware.config.formatdate.LocalDateTimeSerializer;
@@ -47,7 +47,7 @@ public class PackingList extends Auditable<String> implements Serializable {
     private String note;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=true)
+    @JoinColumn(name="DP_id", nullable=true, referencedColumnName = "id")
     private DeliveryPackage deliveryPackage;
 
 }

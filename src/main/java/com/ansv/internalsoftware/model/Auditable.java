@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.modal;
+package com.ansv.internalsoftware.model;
 
 import com.ansv.internalsoftware.config.formatdate.LocalDateTimeDeserializer;
 import com.ansv.internalsoftware.config.formatdate.LocalDateTimeSerializer;

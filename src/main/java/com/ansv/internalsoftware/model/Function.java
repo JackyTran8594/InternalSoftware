@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.modal;
+package com.ansv.internalsoftware.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
