@@ -1,6 +1,5 @@
 package com.ansv.internalsoftware.controller;
 
-import com.ansv.internalsoftware.config.security.JwtAuthSecurityConfig;
 import com.ansv.internalsoftware.config.security.JwtTokenProvider;
 //import com.ansv.internalsoftware.config.security.LdapAuthSecurityConfig;
 import com.ansv.internalsoftware.constants.MessageConstans;
@@ -8,13 +7,9 @@ import com.ansv.internalsoftware.security.JwtAuthenticationResponse;
 import com.ansv.internalsoftware.security.MessageResponse;
 import com.ansv.internalsoftware.service.Impl.UserDetailsServiceImpl;
 import com.ansv.internalsoftware.util.DataUtils;
-import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Import;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

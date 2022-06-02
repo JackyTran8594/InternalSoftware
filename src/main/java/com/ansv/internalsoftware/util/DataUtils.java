@@ -50,6 +50,11 @@ public class DataUtils {
         return !isNullOrEmpty(collection);
     }
 
+    public static boolean notNullOrEmpty(String input) {
+        return input != null && !input.trim().isEmpty();
+    }
+
+
     public static String parseToString(Object obj) {
         if(isNull(obj)) {
             return null;
@@ -71,6 +76,14 @@ public class DataUtils {
 
     public static Integer parseToInt(String value) {
         return parseToInt(value, null);
+    }
+
+    public static Integer parseToInt(Object value) {
+        String tmp = parseToString(value);
+        if (isNull(tmp)) {
+            return null;
+        }
+        return Integer.valueOf(tmp);
     }
 
     public static boolean nullOrZero(Long value) {
