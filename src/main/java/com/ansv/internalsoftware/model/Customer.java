@@ -23,10 +23,10 @@ public class Customer extends Auditable<String> implements Serializable {
     @Column(name = "code", length = 50)
     private String code;
 
-    @Column(name = "name", length = 500, columnDefinition = "nvarchar")
+    @Column(name = "name", columnDefinition = "nvarchar(500)")
     private String name;
 
-    @Column(name = "address", columnDefinition = "nvarchar", length = 500)
+    @Column(name = "address", columnDefinition = "nvarchar(500)", length = 500)
     private String address;
 
     @Column(name = "tax_code", length = 50)
@@ -35,7 +35,7 @@ public class Customer extends Auditable<String> implements Serializable {
     @Column(name = "fax", length = 20)
     private String fax;
 
-    @Column(name = "description", columnDefinition = "nvarchar", length = 500)
+    @Column(name = "description", columnDefinition = "nvarchar(500)")
     private String description;
 
     @OneToOne(cascade = CascadeType.ALL)

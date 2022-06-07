@@ -1,13 +1,11 @@
 package com.ansv.internalsoftware.controller;
 
-import com.ansv.internalsoftware.dto.request.ContractDTO;
-import com.ansv.internalsoftware.dto.request.UserDTO;
+import com.ansv.internalsoftware.dto.response.ContractDTO;
 import com.ansv.internalsoftware.service.ContractService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 

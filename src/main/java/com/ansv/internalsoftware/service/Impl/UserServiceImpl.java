@@ -1,17 +1,21 @@
 package com.ansv.internalsoftware.service.Impl;
 
-import com.ansv.internalsoftware.dto.request.UserDTO;
+import com.ansv.internalsoftware.dto.response.UserDTO;
 import com.ansv.internalsoftware.model.UserEntity;
 import com.ansv.internalsoftware.repo.UserRepository;
 import com.ansv.internalsoftware.service.UserService;
 import com.ansv.internalsoftware.util.BaseMapper;
 import com.ansv.internalsoftware.util.DataUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static com.ansv.internalsoftware.constants.Constants.ACTIVE;
 
@@ -20,11 +24,17 @@ import static com.ansv.internalsoftware.constants.Constants.ACTIVE;
 @Slf4j
 public class UserServiceImpl implements UserService {
     private static final BaseMapper<UserEntity, UserDTO> mapper = new BaseMapper<>(UserEntity.class, UserDTO.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private UserRepository userRepository;
 
     @Override
     public UserDTO findById(Long id) {
+        Optional<UserEntity> entity = userRepository.findById(id);
+        if(entity.isPresent()) {
+            UserDTO dto = mapper.toDtoBean(entity.get());
+            return dto;
+        }
         return null;
     }
 
@@ -44,13 +54,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> findAll() {
-        return null;
+        List<UserEntity> listEntity = userRepository.findAll();
+        List<UserDTO> listData = mapper.toDtoBean(listEntity);
+        return listData;
     }
 
     @Override
     public List<UserDTO> search(Map<String, Object> mapParam) {
-        List<UserDTO> ListData = userRepository.search(mapParam, UserEntity.class);
-        return ListData;
+        Map<String, Object> parameters = new HashMap<>();
+        List<UserEntity> listEntity = userRepository.search(mapParam, UserDTO.class);
+        List<UserDTO> listData = mapper.toDtoBean(listEntity);
+        return listData;
     }
 
     @Override
@@ -72,14 +86,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> findByCode(String departmentCode) {
-        return null;
+    public List<UserDTO> findByCode(String code) {
+        try {
+            List<UserEntity> listEntity = userRepository.findByCode(code);
+            List<UserDTO> listData = mapper.toDtoBean(listEntity);
+            return listData;
+        } catch(Exception e) {
+            logger.error(e.getMessage(), e);
+            return null;
+        }
+
     }
 
-    @Override
-    public Boolean deleteById(List<Long> listid) {
-        return null;
-    }
+
 
     @Override
     public Boolean asyncUserLDAP() {

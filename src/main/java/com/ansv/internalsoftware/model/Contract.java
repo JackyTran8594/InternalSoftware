@@ -58,10 +58,10 @@ public class Contract extends Auditable<String> implements Serializable {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime timeLine;
 
-    @Column(name = "guarantee", columnDefinition="nvarchar" ,length = 500)
+    @Column(name = "guarantee", columnDefinition="nvarchar(500)")
     private String guarantee;
 
-    @Column(name = "note", columnDefinition="nvarchar" ,length = 500)
+    @Column(name = "note", columnDefinition="nvarchar(500)")
     private String note;
 
     @OneToMany(mappedBy="contract")

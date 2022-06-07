@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1654591003805-62" author="Tran Tuan Vu (generated)">
+        <dropColumn columnName="password" tableName="user"/>
+
+        <dropColumn columnName="note" tableName="user"/>
+
+        <dropColumn columnName="position" tableName="user"/>
+    </changeSet>
+    <changeSet id="1654591003805-1" author="Tran Tuan Vu (generated)">
+        <dropColumn columnName="address" tableName="customer"/>
+
+        <dropColumn columnName="description" tableName="customer"/>
+
+        <dropColumn columnName="name" tableName="customer"/>
+    </changeSet>
+    <changeSet id="1654591003805-2" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="customer">
+            <column name="address" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-3" author="Tran Tuan Vu (generated)">
+        <dropColumn columnName="address" tableName="delivery_package"/>
+
+        <dropColumn columnName="description" tableName="delivery_package"/>
+
+        <dropColumn columnName="note" tableName="delivery_package"/>
+    </changeSet>
+    <changeSet id="1654591003805-4" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="delivery_package">
+            <column name="address" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-5" author="Tran Tuan Vu (generated)">
+        <dropColumn columnName="address" tableName="packing_list"/>
+
+        <dropColumn columnName="description" tableName="packing_list"/>
+
+        <dropColumn columnName="note" tableName="packing_list"/>
+    </changeSet>
+    <changeSet id="1654591003805-6" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="packing_list">
+            <column name="address" type="nvarchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-7" author="Tran Tuan Vu (generated)">
+        <dropColumn columnName="address" tableName="period_order"/>
+
+        <dropColumn columnName="description" tableName="period_order"/>
+
+        <dropColumn columnName="note" tableName="period_order"/>
+
+        <dropColumn columnName="payment_content" tableName="period_order"/>
+    </changeSet>
+    <changeSet id="1654591003805-8" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="period_order">
+            <column name="address" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-9" author="Tran Tuan Vu (generated)">
+        <modifyDataType columnName="code" newDataType="VARCHAR(50)" tableName="user"/>
+    </changeSet>
+    <changeSet id="1654591003805-11" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="customer">
+            <column name="description" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-13" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="delivery_package">
+            <column name="description" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-14" author="Tran Tuan Vu (generated)">
+        <dropColumn columnName="description" tableName="department"/>
+
+        <dropColumn columnName="note" tableName="department"/>
+    </changeSet>
+    <changeSet id="1654591003805-15" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="department">
+            <column name="description" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-17" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="packing_list">
+            <column name="description" type="nvarchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-19" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="period_order">
+            <column name="description" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-20" author="Tran Tuan Vu (generated)">
+        <dropColumn columnName="description" tableName="role"/>
+
+        <dropColumn columnName="name" tableName="role"/>
+    </changeSet>
+    <changeSet id="1654591003805-21" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="role">
+            <column name="description" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-22" author="Tran Tuan Vu (generated)">
+        <dropColumn columnName="guarantee" tableName="contract"/>
+
+        <dropColumn columnName="note" tableName="contract"/>
+    </changeSet>
+    <changeSet id="1654591003805-23" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="contract">
+            <column name="guarantee" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-24" author="Tran Tuan Vu (generated)">
+        <dropColumn columnName="made_in" tableName="product_service"/>
+
+        <dropColumn columnName="name" tableName="product_service"/>
+
+        <dropColumn columnName="note" tableName="product_service"/>
+    </changeSet>
+    <changeSet id="1654591003805-25" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="product_service">
+            <column name="made_in" type="nvarchar(100)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-26" author="Tran Tuan Vu (generated)">
+        <dropColumn columnName="menu_name" tableName="function"/>
+    </changeSet>
+    <changeSet id="1654591003805-27" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="function">
+            <column name="menu_name" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-28" author="Tran Tuan Vu (generated)">
+        <dropColumn columnName="name" tableName="config"/>
+
+        <dropColumn columnName="note" tableName="config"/>
+    </changeSet>
+    <changeSet id="1654591003805-29" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="config">
+            <column name="name" type="nvarchar(100)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-30" author="Tran Tuan Vu (generated)">
+        <dropColumn columnName="name" tableName="config_value"/>
+
+        <dropColumn columnName="note" tableName="config_value"/>
+    </changeSet>
+    <changeSet id="1654591003805-31" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="config_value">
+            <column name="name" type="nvarchar(100)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-33" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="customer">
+            <column name="name" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-35" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="product_service">
+            <column name="name" type="nvarchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-37" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="role">
+            <column name="name" type="nvarchar(100)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-39" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="config">
+            <column name="note" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-41" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="config_value">
+            <column name="note" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-43" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="contract">
+            <column name="note" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-45" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="delivery_package">
+            <column name="note" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-47" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="department">
+            <column name="note" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-49" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="packing_list">
+            <column name="note" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-51" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="period_order">
+            <column name="note" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-53" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="product_service">
+            <column name="note" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-55" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="user">
+            <column name="note" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-57" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="period_order">
+            <column name="payment_content" type="nvarchar(500)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-58" author="Tran Tuan Vu (generated)">
+        <modifyDataType columnName="phone_number" newDataType="VARCHAR(20)" tableName="user"/>
+    </changeSet>
+    <changeSet id="1654591003805-60" author="Tran Tuan Vu (generated)">
+        <addColumn tableName="user">
+            <column name="position" type="nvarchar(100)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654591003805-61" author="Tran Tuan Vu (generated)">
+        <modifyDataType columnName="username" newDataType="VARCHAR(100)" tableName="user"/>
+    </changeSet>
+
+</databaseChangeLog>

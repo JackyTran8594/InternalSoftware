@@ -31,9 +31,9 @@ public class RoleRepositoryCustomImpl extends BaseRepository<Role> implements Ro
 
         if (!count) {
             if (paramsSearch.containsKey("sort")) {
-                sb.append(formatSort((String) paramsSearch.get("sort"), " ORDER BY os.id ASC "));
+                sb.append(formatSort((String) paramsSearch.get("sort"), " ORDER BY r.id ASC "));
             } else {
-                sb.append(" ORDER BY os.id DESC ");
+                sb.append(" ORDER BY r.id DESC ");
             }
         }
 

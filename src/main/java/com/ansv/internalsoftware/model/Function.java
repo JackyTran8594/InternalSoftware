@@ -22,7 +22,7 @@ public class Function extends Auditable<String> implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "menu_name")
+    @Column(name = "menu_name", columnDefinition="nvarchar(500)")
     private String menuName;
 
     @Column(name = "menu_code")

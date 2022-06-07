@@ -36,13 +36,13 @@ public class DeliveryPackage extends Auditable<String> implements Serializable {
     @Column(name = "DP_code", length = 50)
     private String dpCode;
 
-    @Column(name = "description", length = 500, columnDefinition = "nvarchar")
+    @Column(name = "description", columnDefinition = "nvarchar(500)")
     private String description;
 
     @Column(name = "value", precision = 18, scale = 2)
     private BigDecimal value;
 
-    @Column(name = "address", columnDefinition = "nvarchar", length = 500)
+    @Column(name = "address", columnDefinition = "nvarchar(500)")
     private String address;
 
     @Column(name = "province_id")
@@ -54,7 +54,7 @@ public class DeliveryPackage extends Auditable<String> implements Serializable {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime pdDate;
 
-    @Column(name = "note", columnDefinition="nvarchar" ,length = 500)
+    @Column(name = "note", columnDefinition="nvarchar(500)")
     private String note;
 
     @ManyToOne

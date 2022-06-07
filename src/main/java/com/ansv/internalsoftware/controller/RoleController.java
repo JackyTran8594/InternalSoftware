@@ -1,8 +1,7 @@
 package com.ansv.internalsoftware.controller;
 
 
-import com.ansv.internalsoftware.dto.request.PeriodOrderDTO;
-import com.ansv.internalsoftware.dto.request.RoleDTO;
+import com.ansv.internalsoftware.dto.response.RoleDTO;
 import com.ansv.internalsoftware.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

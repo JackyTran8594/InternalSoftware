@@ -33,19 +33,19 @@ public class PeriodOrder extends Auditable<String> implements Serializable {
     @Column(name = "PO_number")
     private Integer poNumber;
 
-    @Column(name = "description", length = 500, columnDefinition = "nvarchar")
+    @Column(name = "description", columnDefinition="nvarchar(500)")
     private String description;
 
     @Column(name = "value", precision = 18, scale = 2)
     private BigDecimal value;
 
-    @Column(name = "payment_content", columnDefinition = "nvarchar", length = 500)
+    @Column(name = "payment_content", columnDefinition="nvarchar(500)")
     private String paymentContent;
 
     @Column(name = "bank_guarantee", length = 50)
     private String bankGuarantee;
 
-    @Column(name = "address", columnDefinition = "nvarchar", length = 500)
+    @Column(name = "address", columnDefinition="nvarchar(500)")
     private String address;
 
     @Column(name = "PO_date")
@@ -58,7 +58,7 @@ public class PeriodOrder extends Auditable<String> implements Serializable {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime timeLine;
 
-    @Column(name = "note", columnDefinition="nvarchar" ,length = 500)
+    @Column(name = "note", columnDefinition="nvarchar(500)")
     private String note;
 
     @ManyToOne

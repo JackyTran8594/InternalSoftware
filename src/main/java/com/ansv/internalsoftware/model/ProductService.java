@@ -29,7 +29,7 @@ public class ProductService extends Auditable<String> implements Serializable {
     private String poCode;
 
 
-    @Column(name = "name", length = 500, columnDefinition = "nvarchar")
+    @Column(name = "name", columnDefinition="nvarchar(255)")
     private String name;
 
     @Column(name = "amount")
@@ -38,7 +38,7 @@ public class ProductService extends Auditable<String> implements Serializable {
     @Column(name = "price", precision = 18, scale = 2)
     private BigDecimal price;
 
-    @Column(name = "made_in", columnDefinition = "nvarchar", length = 50)
+    @Column(name = "made_in", columnDefinition="nvarchar(100)")
     private String madeIn;
 
     @Column(name = "VAT", precision = 18, scale = 2)
@@ -47,7 +47,7 @@ public class ProductService extends Auditable<String> implements Serializable {
     @Column(name = "product_code", length = 50)
     private String productCode;
 
-    @Column(name = "note", columnDefinition="nvarchar" ,length = 500)
+    @Column(name = "note", columnDefinition="nvarchar(500)")
     private String note;
 
     @ManyToOne

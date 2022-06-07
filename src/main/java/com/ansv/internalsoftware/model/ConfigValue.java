@@ -26,10 +26,10 @@ public class ConfigValue extends Auditable<String> implements Serializable {
     @Column(name = "code", length = 50)
     private String code;
 
-    @Column(name = "name", columnDefinition="nvarchar", length = 100)
+    @Column(name = "name", columnDefinition="nvarchar(100)")
     private String name;
 
-    @Column(name = "note", columnDefinition="nvarchar" ,length = 500)
+    @Column(name = "note", columnDefinition="nvarchar(500)")
     private String note;
 
     @ManyToOne

@@ -1,6 +1,6 @@
 package com.ansv.internalsoftware.service;
 
-import com.ansv.internalsoftware.dto.request.RoleDTO;
+import com.ansv.internalsoftware.dto.response.RoleDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -8,7 +8,7 @@ import java.util.Map;
 public interface RoleService {
     RoleDTO findById(Long id);
 
-    RoleDTO save(RoleDTO id);
+    RoleDTO save(RoleDTO item);
 
     List<RoleDTO> findAll();
 
@@ -21,5 +21,7 @@ public interface RoleService {
     Boolean deleteById(Long id);
 
     Boolean deleteAll(List<Long> listId);
+
+    List<RoleDTO> findRoleByUserId(Long id);
 
 }

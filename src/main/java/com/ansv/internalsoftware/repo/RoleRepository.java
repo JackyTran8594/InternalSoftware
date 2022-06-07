@@ -21,9 +21,15 @@ public interface RoleRepository extends JpaRepository<Role, Long>, RoleRepositor
 
     void deleteById(Long listId);
 
+    @Query(value="DELETE FROM role as r WHERE 1=1 AND r.id IN :listId", nativeQuery=true)
     Integer deleteAll(List<Long> listId);
 
     Role findByCode(String code);
+
+    @Query(value = "SELECT r.name FROM role AS r LEFT JOIN user_entity AS u ON r.id = u.role_id WHERE u.id = :userId", nativeQuery = true)
+    List<Role> findRoleByUserId(@Param("userId") Long userId);
+
+
 
 
 

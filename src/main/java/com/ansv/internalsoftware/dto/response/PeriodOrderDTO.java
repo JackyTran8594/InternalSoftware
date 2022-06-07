@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.dto.request;
+package com.ansv.internalsoftware.dto.response;
 
 import com.ansv.internalsoftware.config.formatdate.LocalDateTimeDeserializer;
 import com.ansv.internalsoftware.config.formatdate.LocalDateTimeSerializer;
@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class PeriodOrderDTO extends BaseDTO {
+public class PeriodOrderDTO extends BaseDTO<String> {
 
     private Long id;
 

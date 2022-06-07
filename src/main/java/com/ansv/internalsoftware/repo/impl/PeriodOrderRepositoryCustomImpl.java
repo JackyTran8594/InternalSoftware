@@ -37,9 +37,9 @@ public class PeriodOrderRepositoryCustomImpl extends BaseRepository<PeriodOrder>
 
         if (!count) {
             if (paramsSearch.containsKey("sort")) {
-                sb.append(formatSort((String) paramsSearch.get("sort"), " ORDER BY os.id DESC "));
+                sb.append(formatSort((String) paramsSearch.get("sort"), " ORDER BY po.id DESC "));
             } else {
-                sb.append(" ORDER BY os.id DESC ");
+                sb.append(" ORDER BY po.id DESC ");
             }
         }
 

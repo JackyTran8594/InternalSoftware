@@ -1,6 +1,6 @@
 package com.ansv.internalsoftware.controller;
 
-import com.ansv.internalsoftware.dto.request.UserDTO;
+import com.ansv.internalsoftware.dto.response.UserDTO;
 import com.ansv.internalsoftware.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

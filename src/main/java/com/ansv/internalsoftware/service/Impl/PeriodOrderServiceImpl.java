@@ -1,8 +1,9 @@
 package com.ansv.internalsoftware.service.Impl;
 
-import com.ansv.internalsoftware.dto.request.ContractDTO;
-import com.ansv.internalsoftware.dto.request.PeriodOrderDTO;
+import com.ansv.internalsoftware.dto.response.DepartmentDTO;
+import com.ansv.internalsoftware.dto.response.PeriodOrderDTO;
 import com.ansv.internalsoftware.model.Contract;
+import com.ansv.internalsoftware.model.Department;
 import com.ansv.internalsoftware.model.PeriodOrder;
 import com.ansv.internalsoftware.repo.PeriodOrderRepository;
 import com.ansv.internalsoftware.service.PeriodOrderService;
@@ -63,7 +64,8 @@ public class PeriodOrderServiceImpl implements PeriodOrderService {
 
     @Override
     public List<PeriodOrderDTO> search(Map<String, Object> mapParam) {
-        List<PeriodOrderDTO> listData = repository.search(mapParam, Contract.class);
+        List<PeriodOrder> listEntity = repository.search(mapParam, PeriodOrder.class);
+        List<PeriodOrderDTO> listData = mapper.toDtoBean(listEntity);
         return listData;
     }
 

@@ -17,11 +17,11 @@ public class UserRepositoryCustomImpl extends BaseRepository<UserEntity> impleme
         StringBuilder sb = new StringBuilder();
         if (count) {
             sb.append("SELECT COUNT(id) \n")
-                    .append("FROM user u \n")
+                    .append("FROM user_entity u \n")
                     .append("WHERE 1=1 ");
         } else {
             sb.append("SELECT r.* \n")
-                    .append("FROM user u \n")
+                    .append("FROM user_entity u \n")
                     .append("WHERE 1=1 ");
         }
 
@@ -37,9 +37,9 @@ public class UserRepositoryCustomImpl extends BaseRepository<UserEntity> impleme
 
         if (!count) {
             if (paramsSearch.containsKey("sort")) {
-                sb.append(formatSort((String) paramsSearch.get("sort"), " ORDER BY os.code DESC "));
+                sb.append(formatSort((String) paramsSearch.get("sort"), " ORDER BY u.code DESC "));
             } else {
-                sb.append(" ORDER BY os.id desc ");
+                sb.append(" ORDER BY u.id desc ");
             }
         }
 

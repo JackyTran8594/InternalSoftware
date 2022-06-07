@@ -21,13 +21,13 @@ public class Role extends Auditable<String> implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", columnDefinition="nvarchar(100)")
     private String name;
 
     @Column(name = "code")
     private String code;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition="nvarchar(500)")
     private String description;
 
     @OneToOne(mappedBy = "role")

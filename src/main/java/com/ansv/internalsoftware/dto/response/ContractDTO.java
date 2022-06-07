@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.dto.request;
+package com.ansv.internalsoftware.dto.response;
 
 
 import com.ansv.internalsoftware.config.formatdate.LocalDateTimeDeserializer;
@@ -24,7 +24,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ContractDTO extends BaseDTO {
+public class ContractDTO extends BaseDTO<String> {
     private Long id;
 
     private String contractCode;

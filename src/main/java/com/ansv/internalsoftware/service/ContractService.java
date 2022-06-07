@@ -1,6 +1,6 @@
 package com.ansv.internalsoftware.service;
 
-import com.ansv.internalsoftware.dto.request.ContractDTO;
+import com.ansv.internalsoftware.dto.response.ContractDTO;
 
 import java.util.List;
 import java.util.Map;

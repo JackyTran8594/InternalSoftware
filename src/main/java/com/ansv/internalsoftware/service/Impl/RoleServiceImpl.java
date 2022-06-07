@@ -1,30 +1,18 @@
 package com.ansv.internalsoftware.service.Impl;
 
-import com.ansv.internalsoftware.dto.request.PeriodOrderDTO;
-import com.ansv.internalsoftware.dto.request.RoleDTO;
-import com.ansv.internalsoftware.model.Contract;
-import com.ansv.internalsoftware.model.PeriodOrder;
+import com.ansv.internalsoftware.dto.response.RoleDTO;
 import com.ansv.internalsoftware.model.Role;
-import com.ansv.internalsoftware.model.UserEntity;
 import com.ansv.internalsoftware.repo.RoleRepository;
-import com.ansv.internalsoftware.repo.UserRepository;
 import com.ansv.internalsoftware.service.RoleService;
 import com.ansv.internalsoftware.util.BaseMapper;
 import com.ansv.internalsoftware.util.DataUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static com.ansv.internalsoftware.constants.Constants.ACTIVE;
 
@@ -65,13 +53,15 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<RoleDTO> findAll() {
-        return null;
+        List<Role> listEntity = repository.findAll();
+        List<RoleDTO> listData = mapper.toDtoBean(listEntity);
+        return listData;
     }
 
     @Override
     public List<RoleDTO> search(Map<String, Object> mapParam) {
-        Map<String, Object> parameters = new HashMap<>();
-        List<RoleDTO> listData = repository.search(mapParam, RoleDTO.class);
+        List<Role> listEntity = repository.search(mapParam, Role.class);
+        List<RoleDTO> listData = mapper.toDtoBean(listEntity);
         return listData;
     }
 
@@ -79,7 +69,7 @@ public class RoleServiceImpl implements RoleService {
     public Long count(Map<String, Object> mapParam) {
         Map<String, Object> parameters = new HashMap<>();
         Long count = repository.count(mapParam);
-        return null;
+        return count;
     }
 
     @Override
@@ -115,6 +105,19 @@ public class RoleServiceImpl implements RoleService {
             logger.error(e.getMessage(), e);
             return false;
         }
+    }
+
+    @Override
+    public List<RoleDTO> findRoleByUserId(Long id) {
+        try {
+            List<Role> listEntity = repository.findRoleByUserId(id);
+            List<RoleDTO> listData = mapper.toDtoBean(listEntity);
+            return listData;
+        } catch(Exception e) {
+            logger.error(e.getMessage(), e);
+            return null;
+        }
+
     }
 
 }

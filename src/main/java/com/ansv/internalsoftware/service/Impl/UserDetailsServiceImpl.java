@@ -39,7 +39,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             }
             List<String> role = new ArrayList<String>();
             List<Long> listRole = new ArrayList<Long>();
-            List<Role> roles = roleRepository.findRoleById(user.getId());
+            List<Role> roles = roleRepository.findRoleByUserId(user.getId());
             if (DataUtils.isNullOrEmpty(roles)) {
                 listRole = roles.stream().map(Role::getId).collect(Collectors.toList());
                 role = roleRepository.getRoleWithList(listRole);

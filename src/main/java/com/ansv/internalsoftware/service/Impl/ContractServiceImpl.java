@@ -1,7 +1,6 @@
 package com.ansv.internalsoftware.service.Impl;
 
-import com.ansv.internalsoftware.dto.request.ContractDTO;
-import com.ansv.internalsoftware.dto.request.UserDTO;
+import com.ansv.internalsoftware.dto.response.ContractDTO;
 import com.ansv.internalsoftware.model.Contract;
 import com.ansv.internalsoftware.repo.ContractRepository;
 import com.ansv.internalsoftware.service.ContractService;
@@ -10,7 +9,6 @@ import com.ansv.internalsoftware.util.DataUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -62,7 +60,8 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public List<ContractDTO> search(Map<String, Object> mapParam) {
-        List<ContractDTO> listData = repository.search(mapParam, Contract.class);
+        List<Contract> listEntity = repository.search(mapParam, Contract.class);
+        List<ContractDTO> listData = mapper.toDtoBean(listEntity);
         return listData;
     }
 

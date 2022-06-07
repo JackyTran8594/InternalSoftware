@@ -1,19 +1,18 @@
-package com.ansv.internalsoftware.dto.request;
+package com.ansv.internalsoftware.dto.response;
 
 
 import com.ansv.internalsoftware.dto.BaseDTO;
 import com.ansv.internalsoftware.model.Department;
-import com.ansv.internalsoftware.model.Function;
 import com.ansv.internalsoftware.model.Role;
-import com.ansv.internalsoftware.model.UserEntity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.HashSet;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 import java.util.Set;
 
@@ -21,14 +20,25 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class RoleDTO extends BaseDTO {
-
+public class UserDTO extends BaseDTO<String> {
     private Long id;
 
-    private String name;
+    private String username;
 
     private String code;
 
-    private String description;
+    private String fullName;
+
+    private String email;
+
+    private String phone_number;
+
+    private String position;
+
+    private String note;
+
+    private Long roleId;
+
+    private String password;
 
 }

@@ -1,8 +1,7 @@
 package com.ansv.internalsoftware.controller;
 
 
-import com.ansv.internalsoftware.dto.request.ContractDTO;
-import com.ansv.internalsoftware.dto.request.PeriodOrderDTO;
+import com.ansv.internalsoftware.dto.response.PeriodOrderDTO;
 import com.ansv.internalsoftware.service.PeriodOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

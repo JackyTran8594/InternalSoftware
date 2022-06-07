@@ -18,16 +18,16 @@ public class Department extends Auditable<String> implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", columnDefinition="nvarchar(255)")
     private String name;
 
     @Column(name = "code")
     private String code;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition="nvarchar(500)")
     private String description;
 
-    @Column(name = "note")
+    @Column(name = "note", columnDefinition="nvarchar(500)")
     private String note;
 
     @ManyToMany(cascade = {CascadeType.ALL})

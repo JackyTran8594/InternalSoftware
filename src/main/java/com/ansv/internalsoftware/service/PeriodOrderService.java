@@ -1,7 +1,6 @@
 package com.ansv.internalsoftware.service;
 
-import com.ansv.internalsoftware.dto.request.PeriodOrderDTO;
-import com.ansv.internalsoftware.dto.request.UserDTO;
+import com.ansv.internalsoftware.dto.response.PeriodOrderDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +8,7 @@ import java.util.Map;
 public interface PeriodOrderService {
     PeriodOrderDTO findById(Long id);
 
-    PeriodOrderDTO save(PeriodOrderDTO id);
+    PeriodOrderDTO save(PeriodOrderDTO item);
 
     List<PeriodOrderDTO> findAll();
 

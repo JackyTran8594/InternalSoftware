@@ -1,6 +1,6 @@
 package com.ansv.internalsoftware.service;
 
-import com.ansv.internalsoftware.dto.request.UserDTO;
+import com.ansv.internalsoftware.dto.response.UserDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +9,7 @@ public interface UserService {
 
     UserDTO findById(Long id);
 
-    UserDTO save(UserDTO id);
+    UserDTO save(UserDTO item);
 
     List<UserDTO> findAll();
 
@@ -21,9 +21,7 @@ public interface UserService {
 
     List<UserDTO> findByDepartmentid(Long departmentId);
 
-    List<UserDTO> findByCode(String departmentCode);
-
-    Boolean deleteById(List<Long> listid);
+    List<UserDTO> findByCode(String code);
 
     Boolean asyncUserLDAP();
 }
