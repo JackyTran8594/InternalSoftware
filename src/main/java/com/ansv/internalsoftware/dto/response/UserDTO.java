@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserDTO extends BaseDTO<String> {
+public class UserDTO extends BaseDTO<String> implements Serializable {
     private Long id;
 
     private String username;

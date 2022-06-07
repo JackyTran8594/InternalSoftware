@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BaseRepositoryImpl<T> extends BaseRepository<T> implements IBaseRepository<T> {
+public class BaseCustomRepositoryImpl<T> extends BaseCustomRepository<T> implements BaseRepositoryCustom<T> {
 
     @Override
     public String buildQuery(Map<String, Object> paramsSearch, Map<String, Object> params, boolean count) {

@@ -1,22 +1,16 @@
 package com.ansv.internalsoftware.repo.impl;
 
-import com.ansv.internalsoftware.config.formatdate.LocalDateTimeDeserializer;
-import com.ansv.internalsoftware.config.formatdate.LocalDateTimeSerializer;
 import com.ansv.internalsoftware.model.Contract;
-import com.ansv.internalsoftware.repo.base.BaseRepository;
+import com.ansv.internalsoftware.repo.base.BaseCustomRepository;
 import com.ansv.internalsoftware.repo.custom.ContractRepositoryCustom;
 import com.ansv.internalsoftware.util.DataUtils;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class ContractRepositoryCustoImpl extends BaseRepository<Contract> implements ContractRepositoryCustom {
+public class ContractRepositoryCustomImpl extends BaseCustomRepository<Contract> implements ContractRepositoryCustom {
     @Override
     public String buildQuery(Map<String, Object> paramsSearch, Map<String, Object> params, boolean count) {
         StringBuilder sb = new StringBuilder();

@@ -16,7 +16,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ConfigValueDTO extends BaseDTO<String> {
+public class ConfigValueDTO extends BaseDTO<String> implements Serializable {
 
     private Long id;
 

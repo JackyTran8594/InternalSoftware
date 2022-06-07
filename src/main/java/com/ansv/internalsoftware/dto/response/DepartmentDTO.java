@@ -7,11 +7,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DepartmentDTO extends BaseDTO {
+public class DepartmentDTO extends BaseDTO<String> implements Serializable {
     private Long id;
 
     private String name;

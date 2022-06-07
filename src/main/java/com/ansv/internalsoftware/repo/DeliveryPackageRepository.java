@@ -1,7 +1,6 @@
 package com.ansv.internalsoftware.repo;
 
 import com.ansv.internalsoftware.model.DeliveryPackage;
-import com.ansv.internalsoftware.model.PeriodOrder;
 import com.ansv.internalsoftware.repo.custom.DeliveryPackageRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,11 +13,11 @@ public interface DeliveryPackageRepository extends JpaRepository<DeliveryPackage
 
     Optional<DeliveryPackage> findById(Long id);
 
-    List<DeliveryPackage> findAll();
+//    List<DeliveryPackage> findAll();
 
     @Query(value="DELETE FROM delivery_package WHERE id IN :listId", nativeQuery=true)
     Integer deleteAll(@Param("listId") List<Long> listId);
 
-    void deleteById(Long listId);
+//    void deleteById(Long listId);
 
 }

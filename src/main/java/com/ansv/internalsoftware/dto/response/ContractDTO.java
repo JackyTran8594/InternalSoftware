@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -24,7 +25,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ContractDTO extends BaseDTO<String> {
+public class ContractDTO extends BaseDTO<String> implements Serializable {
     private Long id;
 
     private String contractCode;

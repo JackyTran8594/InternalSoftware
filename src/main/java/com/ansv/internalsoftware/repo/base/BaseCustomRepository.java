@@ -12,7 +12,8 @@ import java.util.Map;
 import com.ansv.internalsoftware.util.DataUtils;
 import org.springframework.util.CollectionUtils;
 
-public abstract class BaseRepository<T> {
+@SuppressWarnings({"java:S2326", "java:S4977", "java:S6212"})
+public abstract class BaseCustomRepository<T> {
 
     @PersistenceContext
     protected EntityManager entityManager;

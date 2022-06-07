@@ -2,7 +2,7 @@ package com.ansv.internalsoftware.service.Impl;
 
 import com.ansv.internalsoftware.dto.response.UserDTO;
 import com.ansv.internalsoftware.model.UserEntity;
-import com.ansv.internalsoftware.repo.UserRepository;
+import com.ansv.internalsoftware.repo.UserEntityRepository;
 import com.ansv.internalsoftware.service.UserService;
 import com.ansv.internalsoftware.util.BaseMapper;
 import com.ansv.internalsoftware.util.DataUtils;
@@ -26,7 +26,8 @@ public class UserServiceImpl implements UserService {
     private static final BaseMapper<UserEntity, UserDTO> mapper = new BaseMapper<>(UserEntity.class, UserDTO.class);
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    private UserRepository userRepository;
+
+    private UserEntityRepository userRepository;
 
     @Override
     public UserDTO findById(Long id) {
@@ -62,7 +63,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> search(Map<String, Object> mapParam) {
         Map<String, Object> parameters = new HashMap<>();
-        List<UserEntity> listEntity = userRepository.search(mapParam, UserDTO.class);
+        List<UserEntity> listEntity = userRepository.search(mapParam, UserEntity.class);
         List<UserDTO> listData = mapper.toDtoBean(listEntity);
         return listData;
     }

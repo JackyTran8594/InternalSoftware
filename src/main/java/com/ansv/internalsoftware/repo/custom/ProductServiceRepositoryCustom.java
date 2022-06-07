@@ -1,8 +1,7 @@
 package com.ansv.internalsoftware.repo.custom;
 
-import com.ansv.internalsoftware.model.Config;
 import com.ansv.internalsoftware.model.ProductService;
-import com.ansv.internalsoftware.repo.base.IBaseRepository;
+import com.ansv.internalsoftware.repo.base.BaseRepositoryCustom;
 
-public interface ProductServiceRepositoryCustom extends IBaseRepository {
+public interface ProductServiceRepositoryCustom extends BaseRepositoryCustom {
 }

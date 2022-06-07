@@ -3,7 +3,7 @@ package com.ansv.internalsoftware.repo.base;
 import java.util.List;
 import java.util.Map;
 
-public interface IBaseRepository<T> {
+public interface BaseRepositoryCustom<T> {
 
     List<T> search(Map<String,Object> searchParam, Class<T> t);
 

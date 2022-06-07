@@ -1,16 +1,16 @@
 package com.ansv.internalsoftware.repo.impl;
 
-import com.ansv.internalsoftware.model.Role;
 import com.ansv.internalsoftware.model.UserEntity;
-import com.ansv.internalsoftware.repo.base.BaseRepository;
-import com.ansv.internalsoftware.repo.custom.UserRepositoryCustom;
+import com.ansv.internalsoftware.repo.base.BaseCustomRepository;
+import com.ansv.internalsoftware.repo.custom.UserEntityRepositoryCustom;
 import com.ansv.internalsoftware.util.DataUtils;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UserRepositoryCustomImpl extends BaseRepository<UserEntity> implements UserRepositoryCustom {
+public class UserEntityRepositoryCustomImpl extends BaseCustomRepository<UserEntity> implements UserEntityRepositoryCustom {
+
 
     @Override
     public String buildQuery(Map<String, Object> paramsSearch, Map<String, Object> params, boolean count) {

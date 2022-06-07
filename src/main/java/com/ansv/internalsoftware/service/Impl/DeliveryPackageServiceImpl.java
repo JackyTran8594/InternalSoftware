@@ -1,16 +1,9 @@
 package com.ansv.internalsoftware.service.Impl;
 
 import com.ansv.internalsoftware.dto.response.DeliveryPackageDTO;
-import com.ansv.internalsoftware.dto.response.DepartmentDTO;
-import com.ansv.internalsoftware.dto.response.PeriodOrderDTO;
-import com.ansv.internalsoftware.model.Contract;
 import com.ansv.internalsoftware.model.DeliveryPackage;
-import com.ansv.internalsoftware.model.Department;
-import com.ansv.internalsoftware.model.PeriodOrder;
 import com.ansv.internalsoftware.repo.DeliveryPackageRepository;
-import com.ansv.internalsoftware.repo.PeriodOrderRepository;
 import com.ansv.internalsoftware.service.DeliveryPackageService;
-import com.ansv.internalsoftware.service.PeriodOrderService;
 import com.ansv.internalsoftware.util.BaseMapper;
 import com.ansv.internalsoftware.util.DataUtils;
 import lombok.extern.slf4j.Slf4j;

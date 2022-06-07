@@ -1,8 +1,7 @@
 package com.ansv.internalsoftware.repo.impl;
 
-import com.ansv.internalsoftware.model.Contract;
 import com.ansv.internalsoftware.model.Department;
-import com.ansv.internalsoftware.repo.base.BaseRepository;
+import com.ansv.internalsoftware.repo.base.BaseCustomRepository;
 import com.ansv.internalsoftware.repo.custom.DepartmentRepositoryCustom;
 import com.ansv.internalsoftware.util.DataUtils;
 
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class DepartmentRepositoryCustomImpl extends BaseRepository<Department> implements DepartmentRepositoryCustom {
+public class DepartmentRepositoryCustomImpl extends BaseCustomRepository<Department> implements DepartmentRepositoryCustom {
 
 
     @Override

@@ -1,7 +1,7 @@
 package com.ansv.internalsoftware.repo.impl;
 
 import com.ansv.internalsoftware.model.PeriodOrder;
-import com.ansv.internalsoftware.repo.base.BaseRepository;
+import com.ansv.internalsoftware.repo.base.BaseCustomRepository;
 import com.ansv.internalsoftware.repo.custom.PeriodOrderRepositoryCustom;
 import com.ansv.internalsoftware.util.DataUtils;
 
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class PeriodOrderRepositoryCustomImpl extends BaseRepository<PeriodOrder> implements PeriodOrderRepositoryCustom {
+public class PeriodOrderRepositoryCustomImpl extends BaseCustomRepository<PeriodOrder> implements PeriodOrderRepositoryCustom {
 
 
 
@@ -57,7 +57,7 @@ public class PeriodOrderRepositoryCustomImpl extends BaseRepository<PeriodOrder>
     public List search(Map searchParam, Class t) {
         Map<String, Object> parameters = new HashMap<>();
         String sql = buildQuery(searchParam, parameters, false);
-        return getResultList(sql, parameters);
+        return getResultList(sql, PeriodOrder.class, parameters);
 
     }
 

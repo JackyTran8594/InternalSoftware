@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +22,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class RoleDTO extends BaseDTO<String> {
+public class RoleDTO extends BaseDTO<String> implements Serializable {
 
     private Long id;
 

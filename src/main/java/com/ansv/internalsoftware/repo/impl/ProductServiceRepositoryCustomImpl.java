@@ -1,10 +1,7 @@
 package com.ansv.internalsoftware.repo.impl;
 
-import com.ansv.internalsoftware.model.Config;
 import com.ansv.internalsoftware.model.ProductService;
-import com.ansv.internalsoftware.model.Role;
-import com.ansv.internalsoftware.repo.base.BaseRepository;
-import com.ansv.internalsoftware.repo.custom.ConfigRepositoryCustom;
+import com.ansv.internalsoftware.repo.base.BaseCustomRepository;
 import com.ansv.internalsoftware.repo.custom.ProductServiceRepositoryCustom;
 import com.ansv.internalsoftware.util.DataUtils;
 
@@ -12,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProductServiceRepositoryCustomImpl extends BaseRepository<ProductService> implements ProductServiceRepositoryCustom {
+public class ProductServiceRepositoryCustomImpl extends BaseCustomRepository<ProductService> implements ProductServiceRepositoryCustom {
 
     @Override
     public String buildQuery(Map<String, Object> paramsSearch, Map<String, Object> params, boolean count) {
@@ -54,7 +51,7 @@ public class ProductServiceRepositoryCustomImpl extends BaseRepository<ProductSe
     public List search(Map searchParam, Class t) {
         Map<String, Object> parameters = new HashMap<>();
         String sql = buildQuery(searchParam, parameters, false);
-        return getResultList(sql, Role.class, parameters);
+        return getResultList(sql, ProductService.class, parameters);
     }
 
     @Override

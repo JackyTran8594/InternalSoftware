@@ -14,11 +14,11 @@ public interface ConfigValueService {
 
     List<ConfigValueDTO> findAll();
 
-    List<ConfigValueDTO> search(Map<String, Object> mapParam);
+//    List<ConfigValueDTO> search(Map<String, Object> mapParam);
 
     Long count(Map<String, Object> mapParam);
 
-    ConfigValueDTO findByCode(String code);
+//    ConfigValueDTO findByCode(String code);
 
     Boolean deleteById(Long id);
 

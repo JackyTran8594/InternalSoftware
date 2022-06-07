@@ -1,13 +1,8 @@
 package com.ansv.internalsoftware.service.Impl;
 
-import com.ansv.internalsoftware.dto.response.ConfigDTO;
 import com.ansv.internalsoftware.dto.response.ConfigValueDTO;
-import com.ansv.internalsoftware.model.Config;
 import com.ansv.internalsoftware.model.ConfigValue;
-import com.ansv.internalsoftware.model.Department;
-import com.ansv.internalsoftware.repo.ConfigRepository;
 import com.ansv.internalsoftware.repo.ConfigValueRepository;
-import com.ansv.internalsoftware.service.ConfigService;
 import com.ansv.internalsoftware.service.ConfigValueService;
 import com.ansv.internalsoftware.util.BaseMapper;
 import com.ansv.internalsoftware.util.DataUtils;
@@ -65,12 +60,12 @@ public class ConfigValueServiceImpl implements ConfigValueService {
         return listDTO;
     }
 
-    @Override
-    public List<ConfigValueDTO> search(Map<String, Object> mapParam) {
-        List<ConfigValue> listEntity = repository.search(mapParam, ConfigValue.class);
-        List<ConfigValueDTO> listData = mapper.toDtoBean(listEntity);
-        return listData;
-    }
+//    @Override
+//    public List<ConfigValueDTO> search(Map<String, Object> mapParam) {
+//        List<ConfigValue> listEntity = repository.search(mapParam, ConfigValue.class);
+//        List<ConfigValueDTO> listData = mapper.toDtoBean(listEntity);
+//        return listData;
+//    }
 
     @Override
     public Long count(Map<String, Object> mapParam) {
@@ -78,15 +73,16 @@ public class ConfigValueServiceImpl implements ConfigValueService {
         return count;
     }
 
-    @Override
-    public ConfigValueDTO findByCode(String code) {
-        ConfigValue entity = repository.findByCode(code);
-        if (!DataUtils.isNullOrEmpty(entity)) {
-            ConfigValueDTO dto = mapper.toDtoBean(entity);
-            return dto;
-        }
-        return null;
-    }
+
+//    @Override
+//    public ConfigValueDTO findByCode(String code) {
+//        ConfigValue entity = repository.findByCode(code);
+//        if (!DataUtils.isNullOrEmpty(entity)) {
+//            ConfigValueDTO dto = mapper.toDtoBean(entity);
+//            return dto;
+//        }
+//        return null;
+//    }
 
     @Override
     public Boolean deleteById(Long id) {

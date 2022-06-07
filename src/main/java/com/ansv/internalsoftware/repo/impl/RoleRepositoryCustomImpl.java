@@ -1,7 +1,7 @@
 package com.ansv.internalsoftware.repo.impl;
 
 import com.ansv.internalsoftware.model.Role;
-import com.ansv.internalsoftware.repo.base.BaseRepository;
+import com.ansv.internalsoftware.repo.base.BaseCustomRepository;
 import com.ansv.internalsoftware.repo.custom.RoleRepositoryCustom;
 import com.ansv.internalsoftware.util.DataUtils;
 
@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RoleRepositoryCustomImpl extends BaseRepository<Role> implements RoleRepositoryCustom {
+public class RoleRepositoryCustomImpl extends BaseCustomRepository<Role> implements RoleRepositoryCustom {
 
     @Override
     public String buildQuery(Map<String, Object> paramsSearch, Map<String, Object> params, boolean count) {

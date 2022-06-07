@@ -23,7 +23,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class DeliveryPackageDTO extends BaseDTO<String> {
+public class DeliveryPackageDTO extends BaseDTO<String> implements Serializable {
     private Long id;
 
     private String poCode;

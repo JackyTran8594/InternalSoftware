@@ -2,7 +2,6 @@ package com.ansv.internalsoftware.service.Impl;
 
 import com.ansv.internalsoftware.dto.response.CustomerDTO;
 import com.ansv.internalsoftware.model.Customer;
-import com.ansv.internalsoftware.model.Department;
 import com.ansv.internalsoftware.repo.CustomerRepository;
 import com.ansv.internalsoftware.service.CustomerService;
 import com.ansv.internalsoftware.util.BaseMapper;

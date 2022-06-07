@@ -9,12 +9,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class ConfigDTO extends BaseDTO<String> {
+public class ConfigDTO extends BaseDTO<String> implements Serializable {
 
     private Long id;
 

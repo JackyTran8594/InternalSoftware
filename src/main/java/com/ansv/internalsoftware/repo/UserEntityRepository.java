@@ -1,7 +1,7 @@
 package com.ansv.internalsoftware.repo;
 
 import com.ansv.internalsoftware.model.UserEntity;
-import com.ansv.internalsoftware.repo.custom.UserRepositoryCustom;
+import com.ansv.internalsoftware.repo.custom.UserEntityRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,9 +11,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, Long>, UserRepositoryCustom {
+public interface UserEntityRepository extends JpaRepository<UserEntity, Long>, UserEntityRepositoryCustom {
 
-    UserEntity findUserByUsername(String username);
+    @Query(value = "SELECT u.* FROM user as u WHERE u.username = :username", nativeQuery = true)
+    UserEntity findUserByUsername(@Param("username") String username);
 
     List<UserEntity> findAll();
 

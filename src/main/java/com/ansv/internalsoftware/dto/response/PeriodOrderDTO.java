@@ -14,6 +14,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -21,7 +22,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class PeriodOrderDTO extends BaseDTO<String> {
+public class PeriodOrderDTO extends BaseDTO<String> implements Serializable {
 
     private Long id;
 

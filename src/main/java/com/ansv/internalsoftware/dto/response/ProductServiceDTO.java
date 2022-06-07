@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ProductServiceDTO extends BaseDTO<String>  {
+public class ProductServiceDTO extends BaseDTO<String> implements Serializable  {
     private Long id;
 
     private String contractCode;

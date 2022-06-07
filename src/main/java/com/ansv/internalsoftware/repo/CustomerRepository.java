@@ -1,9 +1,7 @@
 package com.ansv.internalsoftware.repo;
 
 import com.ansv.internalsoftware.model.Customer;
-import com.ansv.internalsoftware.model.Department;
 import com.ansv.internalsoftware.repo.custom.CustomerRepositoryCustom;
-import com.ansv.internalsoftware.repo.custom.DepartmentRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,7 +20,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long>, Custo
 
     @Query(value="DELETE FROM customer as c WHERE 1=1 AND c.id IN :listId", nativeQuery=true)
     Integer deleteAll(List<Long> listId);
-
-    Customer findByCode(String code);
+    @Query(value = "SELECT c.* FROM customer as c WHERE c.code = :code", nativeQuery = true)
+    Customer findByCode(@Param("code") String code);
 
 }

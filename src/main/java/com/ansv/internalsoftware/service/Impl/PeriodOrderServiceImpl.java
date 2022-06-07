@@ -1,9 +1,6 @@
 package com.ansv.internalsoftware.service.Impl;
 
-import com.ansv.internalsoftware.dto.response.DepartmentDTO;
 import com.ansv.internalsoftware.dto.response.PeriodOrderDTO;
-import com.ansv.internalsoftware.model.Contract;
-import com.ansv.internalsoftware.model.Department;
 import com.ansv.internalsoftware.model.PeriodOrder;
 import com.ansv.internalsoftware.repo.PeriodOrderRepository;
 import com.ansv.internalsoftware.service.PeriodOrderService;
