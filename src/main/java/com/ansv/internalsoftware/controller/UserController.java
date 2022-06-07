@@ -47,8 +47,14 @@ public class UserController extends BaseController {
         return userService.findById(id);
     }
 
-    @DeleteMapping("/{id}")
-    public boolean deleteById(@PathVariable(value="id") Long id) {
-        return userService.deleteById(id);
+//    @DeleteMapping("/{id}")
+//    public boolean deleteById(@PathVariable(value="id") Long id) {
+//        return userService.deleteById(id);
+//    }
+
+    @PostMapping("/async")
+    public Boolean asyncUserLDAP() {
+
+        return true;
     }
 }

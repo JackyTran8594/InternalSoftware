@@ -1,6 +1,7 @@
 package com.ansv.internalsoftware.dto.request;
 
 
+import com.ansv.internalsoftware.dto.BaseDTO;
 import com.ansv.internalsoftware.model.Department;
 import com.ansv.internalsoftware.model.Function;
 import com.ansv.internalsoftware.model.Role;
@@ -20,7 +21,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class RoleDTO {
+public class RoleDTO extends BaseDTO {
 
     private Long id;
 

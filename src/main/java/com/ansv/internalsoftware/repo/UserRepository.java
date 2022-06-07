@@ -22,8 +22,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long>, UserRep
     @Query(value = "SELECT u.* FROM user as u LEFT JOIN department_user as du ON u.id = du.user_id WHERE du.department_id = :id", nativeQuery = true)
     List<UserEntity> findUserByDepartmentId(@Param("id") Long id);
 
-    @Query(value = "SELECT u.* FROM user as u LEFT JOIN department_user as du ON u.id = du.user_id WHERE du.department_id = :id", nativeQuery = true)
-    Integer deleteById(@Param("id") Long id);
+
 
 
 }

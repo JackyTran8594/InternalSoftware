@@ -80,4 +80,9 @@ public class UserServiceImpl implements UserService {
     public Boolean deleteById(List<Long> listid) {
         return null;
     }
+
+    @Override
+    public Boolean asyncUserLDAP() {
+        return null;
+    }
 }

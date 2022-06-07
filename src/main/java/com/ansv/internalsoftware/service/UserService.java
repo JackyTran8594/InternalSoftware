@@ -24,4 +24,6 @@ public interface UserService {
     List<UserDTO> findByCode(String departmentCode);
 
     Boolean deleteById(List<Long> listid);
+
+    Boolean asyncUserLDAP();
 }

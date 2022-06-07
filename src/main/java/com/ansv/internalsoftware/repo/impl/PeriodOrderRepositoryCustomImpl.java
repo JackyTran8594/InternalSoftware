@@ -1,44 +1,50 @@
 package com.ansv.internalsoftware.repo.impl;
 
-import com.ansv.internalsoftware.model.Role;
+import com.ansv.internalsoftware.model.PeriodOrder;
 import com.ansv.internalsoftware.repo.base.BaseRepository;
-import com.ansv.internalsoftware.repo.custom.RoleRepositoryCustom;
+import com.ansv.internalsoftware.repo.custom.PeriodOrderRepositoryCustom;
 import com.ansv.internalsoftware.util.DataUtils;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RoleRepositoryCustomImpl extends BaseRepository<Role> implements RoleRepositoryCustom {
+
+public class PeriodOrderRepositoryCustomImpl extends BaseRepository<PeriodOrder> implements PeriodOrderRepositoryCustom {
+
+
 
     @Override
     public String buildQuery(Map<String, Object> paramsSearch, Map<String, Object> params, boolean count) {
         StringBuilder sb = new StringBuilder();
         if (count) {
             sb.append("SELECT COUNT(id) \n")
-                    .append("FROM role r \n")
+                    .append("FROM period_order po \n")
                     .append("WHERE 1=1 ");
         } else {
-            sb.append("SELECT r.* \n")
-                    .append("FROM role r \n")
+            sb.append("SELECT po.* \n")
+                    .append("FROM period_order po \n")
                     .append("WHERE 1=1 ");
         }
 
         if (paramsSearch.containsKey("txtSearch")) {
-            sb.append("AND (UPPER(r.name) LIKE :txtSearch) OR (UPPER(r.code) LIKE :txtSearch) OR (UPPER(r.description) LIKE :txtSearch)");
+            sb.append("AND (UPPER(po.code) LIKE :txtSearch) OR (UPPER(po.description) LIKE :txtSearch)" +
+                    " OR (UPPER(po.bank_guarantee) LIKE :txtSearch)"
+                    + "OR (UPPER(po.payment_content) LIKE :txtSearch) OR (UPPER(po.address) LIKE :txtSearch)"
+                    + "OR (UPPER(po.note) LIKE :txtSearch)");
             params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
         }
 
         if (!count) {
             if (paramsSearch.containsKey("sort")) {
-                sb.append(formatSort((String) paramsSearch.get("sort"), " ORDER BY os.id ASC "));
+                sb.append(formatSort((String) paramsSearch.get("sort"), " ORDER BY os.id DESC "));
             } else {
                 sb.append(" ORDER BY os.id DESC ");
             }
         }
 
         if(!count && paramNotNullOrEmpty(paramsSearch, "pageSize") && !"0".equalsIgnoreCase(String.valueOf(paramsSearch.get("pageSize")))) {
-                sb.append(" OFFSET :offset ROWS");
+            sb.append(" OFFSET :offset ROWS");
             sb.append(" FETCH NEXT :limit ROWS ONLY");
             params.put("offset", offsetPaging(DataUtils.parseToInt(paramsSearch.get("pageNumber")), DataUtils.parseToInt(paramsSearch.get("pageSize"))));
             params.put("limit", DataUtils.parseToInt(paramsSearch.get("limit")));
@@ -51,13 +57,14 @@ public class RoleRepositoryCustomImpl extends BaseRepository<Role> implements Ro
     public List search(Map searchParam, Class t) {
         Map<String, Object> parameters = new HashMap<>();
         String sql = buildQuery(searchParam, parameters, false);
-        return getResultList(sql, Role.class, parameters);
+        return getResultList(sql, parameters);
+
     }
 
     @Override
     public Long count(Map searchParam) {
         Map<String, Object> parameters = new HashMap<>();
-        String sql = buildQuery(searchParam, parameters, true);
+        String sql = buildQuery(searchParam, parameters, false);
         return getCountResult(sql, parameters);
     }
 }
