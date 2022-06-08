@@ -18,7 +18,7 @@ public interface DepartmentRepository extends JpaRepository<Department, Long>, D
     @Query(value = "SELECT f.id, f.action_code FROM role_function AS rf, function AS f WHERE rf.role_id = f.id AND rf.role_id IN :listId", nativeQuery = true)
     List<String> getRoleWithList(@Param("listId") List<Long> listId);
 
-//    void deleteById(Long listId);
+    void deleteById(Long listId);
 
     @Query(value="DELETE FROM department as d WHERE 1=1 AND d.id IN :listId", nativeQuery=true)
     Integer deleteAll(List<Long> listId);

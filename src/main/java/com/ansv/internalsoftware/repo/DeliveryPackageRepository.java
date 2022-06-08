@@ -17,6 +17,6 @@ public interface DeliveryPackageRepository extends JpaRepository<DeliveryPackage
     @Query(value="DELETE FROM delivery_package WHERE id IN :listId", nativeQuery=true)
     Integer deleteAll(@Param("listId") List<Long> listId);
 
-//    void deleteById(Long listId);
+    void deleteById(Long listId);
 
 }

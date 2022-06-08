@@ -39,9 +39,6 @@ public class Function extends Auditable<String> implements Serializable {
 
     @ManyToMany(mappedBy = "functions", fetch = FetchType.LAZY)
     private Set<Role> roles = new HashSet<>();
-//
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "function_id", referencedColumnName="id")
-//    private RoleFunction roleFunction;
+
 
 }

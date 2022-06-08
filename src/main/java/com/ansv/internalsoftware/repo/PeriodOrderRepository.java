@@ -6,10 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PeriodOrderRepository extends JpaRepository<PeriodOrder, Long>, PeriodOrderRepositoryCustom {
 
-//    Optional<PeriodOrder> findById(Long id);
+    Optional<PeriodOrder> findById(Long id);
+
     @Query(value="DELETE FROM perioid_order WHERE id IN :listId", nativeQuery=true)
     Integer deleteAll(@Param("listId") List<Long> listId);
 

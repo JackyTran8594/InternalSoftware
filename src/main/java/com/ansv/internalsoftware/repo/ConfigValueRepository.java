@@ -6,17 +6,20 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
 public interface ConfigValueRepository extends JpaRepository<ConfigValue, Long>, ConfigValueRepositoryCustom {
 
-//    Optional<ConfigValue> findById(Long id);
-//    void deleteById(Long listId);
-    @Query(value="DELETE FROM config as c WHERE 1=1 AND c.id IN :listId", nativeQuery=true)
+    Optional<ConfigValue> findById(Long id);
+
+    //    void deleteById(Long listId);
+    @Query(value = "DELETE FROM config as c WHERE 1=1 AND c.id IN :listId", nativeQuery = true)
     Integer deleteAll(List<Long> listId);
-//    @Query(value = "SELECT cv.* FROM config_value as cv WHERE cv.code = :code", nativeQuery = true)
+
+    //    @Query(value = "SELECT cv.* FROM config_value as cv WHERE cv.code = :code", nativeQuery = true)
 //    ConfigValue findByCode(@Param("code") String code);
-//    ConfigValue findByCode(String code);
+    ConfigValue findByCode(String code);
 
 }
