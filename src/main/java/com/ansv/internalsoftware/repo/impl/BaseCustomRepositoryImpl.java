@@ -1,4 +1,6 @@
-package com.ansv.internalsoftware.repo.base;
+package com.ansv.internalsoftware.repo.impl;
+
+import com.ansv.internalsoftware.repo.BaseRepositoryCustom;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,8 +1,7 @@
 package com.ansv.internalsoftware.repo.impl;
 
 import com.ansv.internalsoftware.model.PeriodOrder;
-import com.ansv.internalsoftware.repo.base.BaseCustomRepository;
-import com.ansv.internalsoftware.repo.custom.PeriodOrderRepositoryCustom;
+import com.ansv.internalsoftware.repo.PeriodOrderRepositoryCustom;
 import com.ansv.internalsoftware.util.DataUtils;
 
 import java.util.HashMap;

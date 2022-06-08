@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.repo.base;
+package com.ansv.internalsoftware.repo;
 
 import java.util.List;
 import java.util.Map;

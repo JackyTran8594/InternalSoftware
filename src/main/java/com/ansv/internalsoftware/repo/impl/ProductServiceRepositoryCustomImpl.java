@@ -1,8 +1,7 @@
 package com.ansv.internalsoftware.repo.impl;
 
 import com.ansv.internalsoftware.model.ProductService;
-import com.ansv.internalsoftware.repo.base.BaseCustomRepository;
-import com.ansv.internalsoftware.repo.custom.ProductServiceRepositoryCustom;
+import com.ansv.internalsoftware.repo.ProductServiceRepositoryCustom;
 import com.ansv.internalsoftware.util.DataUtils;
 
 import java.util.HashMap;

@@ -1,8 +1,7 @@
 package com.ansv.internalsoftware.repo.impl;
 
 import com.ansv.internalsoftware.model.Contract;
-import com.ansv.internalsoftware.repo.base.BaseCustomRepository;
-import com.ansv.internalsoftware.repo.custom.ContractRepositoryCustom;
+import com.ansv.internalsoftware.repo.ContractRepositoryCustom;
 import com.ansv.internalsoftware.util.DataUtils;
 
 import java.util.HashMap;

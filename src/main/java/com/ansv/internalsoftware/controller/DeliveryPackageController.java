@@ -35,12 +35,12 @@ public class DeliveryPackageController extends BaseController {
     }
 
     @PostMapping("")
-    public DeliveryPackageDTO addPeriodOrder(@RequestBody DeliveryPackageDTO item) {
+    public DeliveryPackageDTO addDeliveryPackage(@RequestBody DeliveryPackageDTO item) {
         return service.save(item);
     }
 
     @PutMapping("/{id}")
-    public DeliveryPackageDTO updatePeriodOrder(@RequestBody DeliveryPackageDTO item,@RequestParam long id) {
+    public DeliveryPackageDTO updateDeliveryPackage(@RequestBody DeliveryPackageDTO item,@RequestParam long id) {
         item.setId(id);
         return service.save(item);
     }

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/deliveryPackage")
+@RequestMapping("/api/config")
 public class ConfigController extends BaseController {
 
     @Autowired
@@ -37,12 +37,12 @@ public class ConfigController extends BaseController {
     }
 
     @PostMapping("")
-    public ConfigDTO addPeriodOrder(@RequestBody ConfigDTO item) {
+    public ConfigDTO addConfig(@RequestBody ConfigDTO item) {
         return service.save(item);
     }
 
     @PutMapping("/{id}")
-    public ConfigDTO updatePeriodOrder(@RequestBody ConfigDTO item,@RequestParam long id) {
+    public ConfigDTO updateConfig(@RequestBody ConfigDTO item,@RequestParam long id) {
         item.setId(id);
         return service.save(item);
     }

@@ -1,4 +1,4 @@
-package com.ansv.internalsoftware.repo.base;
+package com.ansv.internalsoftware.repo.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;

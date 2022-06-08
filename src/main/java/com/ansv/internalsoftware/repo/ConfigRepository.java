@@ -1,7 +1,6 @@
 package com.ansv.internalsoftware.repo;
 
 import com.ansv.internalsoftware.model.Config;
-import com.ansv.internalsoftware.repo.custom.ConfigRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,6 +19,7 @@ public interface ConfigRepository extends JpaRepository<Config, Long>, ConfigRep
 
     @Query(value="DELETE FROM config as c WHERE 1=1 AND c.id IN :listId", nativeQuery=true)
     Integer deleteAll(List<Long> listId);
+
     @Query(value = "SELECT c.* FROM config as c WHERE c.code = :code", nativeQuery = true)
     Config findByCode(@Param("code") String code);
 

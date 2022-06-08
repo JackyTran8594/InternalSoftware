@@ -1,7 +1,7 @@
 package com.ansv.internalsoftware.repo.impl;
 
-import com.ansv.internalsoftware.model.Department;
-import com.ansv.internalsoftware.repo.DepartmentRepositoryCustom;
+import com.ansv.internalsoftware.model.DeliveryPackage;
+import com.ansv.internalsoftware.repo.DeliveryPackageRepositoryCustom;
 import com.ansv.internalsoftware.util.DataUtils;
 
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class DepartmentRepositoryCustomImpl extends BaseCustomRepository<Department> implements DepartmentRepositoryCustom {
+public class DeliveryPackageRepositoryCustomImpl extends BaseCustomRepository<DeliveryPackage> implements DeliveryPackageRepositoryCustom {
 
 
     @Override
@@ -17,26 +17,27 @@ public class DepartmentRepositoryCustomImpl extends BaseCustomRepository<Departm
         StringBuilder sb = new StringBuilder();
         if (count) {
             sb.append("SELECT COUNT(*) \n")
-                    .append("FROM department d \n")
+                    .append("FROM delivery_package dp \n")
                     .append("WHERE 1=1 ");
         } else {
             sb.append("SELECT d.* \n")
-                    .append("FROM department d \n")
+                    .append("FROM delivery_package dp \n")
                     .append("WHERE 1=1 ");
         }
 
         if (paramsSearch.containsKey("txtSearch")) {
-            sb.append("AND (UPPER(d.name) LIKE :txtSearch) OR" +
-                    " (UPPER(d.code) LIKE :txtSearch) OR (UPPER(d.description) LIKE :txtSearch)" +
-                    " (UPPER(d.note) LIKE :txtSearch) \n");
+            sb.append("AND (dp.dpCode LIKE :txtSearch) OR" +
+                    " (dp.poCode) LIKE :txtSearch) OR (dp.contractCode LIKE :txtSearch)" +
+                    " OR (dp.description LIKE :txtSearch) " +
+                    "OR (dp.address LIKE :txtSearch) \n");
             params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toString());
         }
 
         if (!count) {
             if (paramsSearch.containsKey("sort")) {
-                sb.append(formatSort((String) paramsSearch.get("sort"), " ORDER BY d.id DESC"));
+                sb.append(formatSort((String) paramsSearch.get("sort"), " ORDER BY dp.id DESC"));
             } else {
-                sb.append("ORDER BY d.id DESC");
+                sb.append("ORDER BY dp.id DESC");
             }
         }
 
@@ -53,7 +54,7 @@ public class DepartmentRepositoryCustomImpl extends BaseCustomRepository<Departm
     public List search(Map searchParam, Class t) {
         Map<String, Object> parameters = new HashMap<>();
         String sql = buildQuery(searchParam,parameters, false);
-        return getResultList(sql, Department.class, parameters);
+        return getResultList(sql, DeliveryPackage.class, parameters);
     }
 
     @Override
