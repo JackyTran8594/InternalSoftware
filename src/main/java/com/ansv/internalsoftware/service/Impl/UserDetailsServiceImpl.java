@@ -6,6 +6,7 @@ import com.ansv.internalsoftware.repo.RoleRepository;
 import com.ansv.internalsoftware.repo.UserEntityRepository;
 import com.ansv.internalsoftware.util.DataUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -22,15 +24,15 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-//    @Autowired
+    @Autowired
     private UserEntityRepository userRepository;
 
-//    @Autowired
+    @Autowired
     private RoleRepository roleRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity user = userRepository.findUserByUsername(username);
+        UserEntity user = userRepository.findByUsername(username);
         User newUser = null;
         if (user != null) {
             if (!"ACTIVE".equalsIgnoreCase(user.getStatus())) {
@@ -39,10 +41,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             List<String> role = new ArrayList<String>();
             List<Long> listRole = new ArrayList<Long>();
             List<Role> roles = roleRepository.findRoleByUserId(user.getId());
-            if (DataUtils.isNullOrEmpty(roles)) {
+            if (!DataUtils.isNullOrEmpty(roles)) {
                 listRole = roles.stream().map(Role::getId).collect(Collectors.toList());
                 role = roleRepository.getRoleWithList(listRole);
 
+            } else {
+                Role roleEntity = new Role();
+                roleEntity.setCode("USER");
+                roleEntity.setName("user");
+//                roleEntity.set
+                roles.add(roleEntity);
+                role.add("USER");
             }
             newUser = new User(user.getUsername(), user.getPassword(), buildSimpleGrantedAuthorities(roles, role));
         } else {
@@ -53,7 +62,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             user.setStatus("ACTIVE");
             user.setPassword(username);
             userRepository.save(user);
-            newUser =  new User(user.getUsername(), user.getPassword(), buildSimpleGrantedAuthorities(new ArrayList<>(), new ArrayList<>()));
+            newUser = new User(user.getUsername(), user.getPassword(), buildSimpleGrantedAuthorities(new ArrayList<>(), new ArrayList<>()));
             return newUser;
         }
         return newUser;

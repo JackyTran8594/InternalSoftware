@@ -12,8 +12,10 @@ import java.util.Optional;
 @Repository
 public interface UserEntityRepository extends JpaRepository<UserEntity, Long>, UserEntityRepositoryCustom {
 
-    @Query(value = "SELECT u.* FROM user as u WHERE u.username = :username", nativeQuery = true)
-    UserEntity findUserByUsername(@Param("username") String username);
+//    @Query(value = "SELECT u.* FROM user as u WHERE u.username = :username", nativeQuery = true)
+//    UserEntity findByUsername(@Param("username") String username);
+
+    UserEntity findByUsername(String username);
 
     List<UserEntity> findAll();
 
