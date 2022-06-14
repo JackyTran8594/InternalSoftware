@@ -1,6 +1,10 @@
 
 ### STAGE 1: BUILD ###
 FROM openjdk:11 AS build
+WORKDIR /appBE
+# copy files from local machine to virtual directory in docker
+COPY . .
+RUN mvn clean package
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar", "/app.jar"]
