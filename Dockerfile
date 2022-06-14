@@ -13,8 +13,8 @@ RUN mvn clean package
 FROM openjdk:11
 WORKDIR /app
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-COPY --from=builders /app/target/app.jar /app/
+#COPY ${JAR_FILE} app.jar
+COPY --from=builders /app/target/InternalSoftware-0.0.1.jar /app/
 ENTRYPOINT ["java","-jar", "app.jar"]
 
 ### STAGE 2:RUN ###
