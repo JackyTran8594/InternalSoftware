@@ -8,7 +8,7 @@ COPY src /app/src
 # sets app as the directory into the app
 WORKDIR /app/
 # run mvn
-RUN mvn clean install
+RUN mvn package
 
 FROM openjdk:11
 WORKDIR /app
