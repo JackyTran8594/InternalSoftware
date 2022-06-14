@@ -3,13 +3,15 @@
 FROM maven:3.8.5-openjdk-11 AS builders
 # create app directory in images and copies pom.xml into it
 COPY pom.xml /app/
-# copies src directory into the app directort in image
+# copy all required dependencies into one layer
+RUN mvn -B dependency:resolve dependency:resolve-plugins
+# copies source code into the app directort in image
 COPY src /app/src
 # sets app as the directory into the app
 WORKDIR /app/
 # run mvn
-RUN mvn clean install
-RUN mvn package
+RUN mvn clean package
+#RUN mvn package
 
 FROM adoptopenjdk/openjdk11:jre-11.0.15_10-alpine
 WORKDIR /app
