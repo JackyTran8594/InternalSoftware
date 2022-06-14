@@ -1,14 +1,21 @@
 
 ### STAGE 1: BUILD ###
-FROM 3.8.5-openjdk-11 AS build
-WORKDIR /appBE
-# copy files from local machine to virtual directory in docker
-COPY . .
-RUN cd /appBE
+FROM maven:3.8.5-openjdk-11 AS builders
+# create app directory in images and copies pom.xml into it
+COPY pom.xml /app/
+# copies src directory into the app directort in image
+COPY src /app/src
+# sets app as the directory into the app
+WORKDIR /app/
+# run mvn
 RUN mvn clean package
+
+FROM openjdk:11
+WORKDIR /app
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar", "/app.jar"]
+COPY --from=builders /app/target/app.jar /app/
+ENTRYPOINT ["java","-jar", "app.jar"]
 
 ### STAGE 2:RUN ###
 # Defining nginx image to be used
