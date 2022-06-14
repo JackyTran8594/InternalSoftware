@@ -1,10 +1,6 @@
 
 ### STAGE 1: BUILD ###
 FROM openjdk:11 AS build
-RUN mkdir/isbeApp
-WORKDIR /isbeApp
-RUN git pull origin main
-RUN mvn clean package
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar", "/app.jar"]
