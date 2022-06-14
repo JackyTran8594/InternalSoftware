@@ -1,6 +1,6 @@
 
 ### STAGE 1: BUILD ###
-FROM openjdk:11 AS build
+FROM 3.8.5-openjdk-11 AS build
 WORKDIR /appBE
 # copy files from local machine to virtual directory in docker
 COPY . .
