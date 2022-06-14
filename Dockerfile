@@ -11,9 +11,9 @@ WORKDIR /app/
 RUN mvn clean install
 RUN mvn package
 
-FROM openjdk:11
+FROM adoptopenjdk/openjdk11:jre-11.0.15_10-alpine
 WORKDIR /app
-ARG JAR_FILE=target/*.jar
+#ARG JAR_FILE=target/*.jar
 #COPY ${JAR_FILE} app.jar
 COPY --from=builders /app/target/InternalSoftware-0.0.1.jar /app/
 ENTRYPOINT ["java","-jar", "InternalSoftware-0.0.1.jar"]
