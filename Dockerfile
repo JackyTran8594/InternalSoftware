@@ -15,7 +15,7 @@ WORKDIR /app
 ARG JAR_FILE=target/*.jar
 #COPY ${JAR_FILE} app.jar
 COPY --from=builders /app/target/InternalSoftware-0.0.1.jar /app/
-ENTRYPOINT ["java","-jar", "app.jar"]
+ENTRYPOINT ["java","-jar", "InternalSoftware-0.0.1.jar"]
 
 ### STAGE 2:RUN ###
 # Defining nginx image to be used
