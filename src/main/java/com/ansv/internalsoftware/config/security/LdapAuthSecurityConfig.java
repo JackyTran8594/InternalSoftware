@@ -31,7 +31,7 @@ import com.ansv.internalsoftware.config.LdapUserAuthoritiesPopulator;
 
 import javax.servlet.http.HttpServletResponse;
 
-@Profile(Profiles.LDAP_AUTH_DEV)
+@Profile({Profiles.LDAP_AUTH_DEV, Profiles.LDAP_AUTH_STAGING})
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)

@@ -19,6 +19,7 @@ WORKDIR /app
 #COPY ${JAR_FILE} app.jar
 COPY --from=builders /app/target/InternalSoftware-0.0.1.jar /app/
 ENTRYPOINT ["java","-jar", "InternalSoftware-0.0.1.jar"]
+EXPOSE 8095
 
 ### STAGE 2:RUN ###
 # Defining nginx image to be used
@@ -28,4 +29,3 @@ ENTRYPOINT ["java","-jar", "InternalSoftware-0.0.1.jar"]
 
 # COPY dist/ant-app /var/www
 # COPY /nginx.conf /etc/nginx/nginx.conf
-# EXPOSE 8094
