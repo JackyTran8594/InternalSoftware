@@ -13,7 +13,7 @@ WORKDIR /app/
 RUN mvn clean package
 #RUN mvn package
 
-FROM adoptopenjdk/openjdk11:jre-11.0.15_10-alpine
+FROM openjdk:11.0.12-jdk
 WORKDIR /app
 #ARG JAR_FILE=target/*.jar
 #COPY ${JAR_FILE} app.jar
