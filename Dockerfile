@@ -19,7 +19,7 @@ WORKDIR /app
 #COPY ${JAR_FILE} app.jar
 COPY --from=builders /app/target/InternalSoftware-0.0.1.jar /app/
 ENTRYPOINT ["java","-jar", "InternalSoftware-0.0.1.jar"]
-#EXPOSE 8095
+#EXPOSE 9200
 
 ### STAGE 2:RUN ###
 # Defining nginx image to be used

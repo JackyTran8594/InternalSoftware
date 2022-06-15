@@ -52,7 +52,6 @@ public class AuthenticationController {
                     HttpStatus.BAD_REQUEST);
         }
         try {
-
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                     loginRequest.getUsername(),
                     loginRequest.getPassword()));
