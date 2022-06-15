@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1655266068006-1" author="Tran Tuan Vu (generated)">
+        <createTable tableName="bank_guarantee">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_bank_guarantee"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="po_code" type="VARCHAR(100)"/>
+            <column name="contact_code" type="VARCHAR(100)"/>
+            <column name="value" type="DECIMAL(18, 2)"/>
+            <column name="note" type="nvarchar"/>
+            <column name="contract_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-2" author="Tran Tuan Vu (generated)">
+        <createTable tableName="config">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_config"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="code" type="VARCHAR(50)"/>
+            <column name="name" type="nvarchar(100)"/>
+            <column name="note" type="nvarchar(500)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-3" author="Tran Tuan Vu (generated)">
+        <createTable tableName="config_value">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_config_value"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="code" type="VARCHAR(50)"/>
+            <column name="name" type="nvarchar(100)"/>
+            <column name="note" type="nvarchar(500)"/>
+            <column name="config_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-4" author="Tran Tuan Vu (generated)">
+        <createTable tableName="contract">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_contract"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="contract_code" type="VARCHAR(100)"/>
+            <column name="name" type="nvarchar"/>
+            <column name="description" type="nvarchar"/>
+            <column name="value" type="DECIMAL(18, 2)"/>
+            <column name="payment_content" type="nvarchar"/>
+            <column name="bank_guarantee" type="VARCHAR(50)"/>
+            <column name="customer_id" type="BIGINT"/>
+            <column name="contract_date" type="DATETIME"/>
+            <column name="timeline" type="DATETIME"/>
+            <column name="guarantee" type="nvarchar(500)"/>
+            <column name="note" type="nvarchar(500)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-5" author="Tran Tuan Vu (generated)">
+        <createTable tableName="customer">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_customer"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="code" type="VARCHAR(50)"/>
+            <column name="name" type="nvarchar(500)"/>
+            <column name="address" type="nvarchar(500)"/>
+            <column name="tax_code" type="VARCHAR(50)"/>
+            <column name="fax" type="VARCHAR(20)"/>
+            <column name="description" type="nvarchar(500)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-6" author="Tran Tuan Vu (generated)">
+        <createTable tableName="delivery_package">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_delivery_package"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="po_code" type="VARCHAR(100)"/>
+            <column name="contract_code" type="VARCHAR(100)"/>
+            <column name="dp_code" type="VARCHAR(50)"/>
+            <column name="description" type="nvarchar(500)"/>
+            <column name="value" type="DECIMAL(18, 2)"/>
+            <column name="address" type="nvarchar(500)"/>
+            <column name="province_id" type="BIGINT"/>
+            <column name="dp_date" type="DATETIME"/>
+            <column name="note" type="nvarchar(500)"/>
+            <column name="po_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-7" author="Tran Tuan Vu (generated)">
+        <createTable tableName="department">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_department"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="name" type="nvarchar(255)"/>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="description" type="nvarchar(500)"/>
+            <column name="note" type="nvarchar(500)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-8" author="Tran Tuan Vu (generated)">
+        <createTable tableName="department_user">
+            <column name="deparment_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_department_user"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_department_user"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-9" author="Tran Tuan Vu (generated)">
+        <createTable tableName="function">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_function"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="menu_name" type="nvarchar(500)"/>
+            <column name="menu_code" type="VARCHAR(255)"/>
+            <column name="action_code" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="parent_code" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-10" author="Tran Tuan Vu (generated)">
+        <createTable tableName="packing_list">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_packing_list"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="pl_code" type="VARCHAR(100)"/>
+            <column name="dp_code" type="VARCHAR(50)"/>
+            <column name="description" type="nvarchar(255)"/>
+            <column name="address" type="nvarchar(255)"/>
+            <column name="pl_date" type="DATETIME"/>
+            <column name="note" type="nvarchar(500)"/>
+            <column name="dp_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-11" author="Tran Tuan Vu (generated)">
+        <createTable tableName="period_order">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_period_order"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="po_code" type="VARCHAR(100)"/>
+            <column name="po_number" type="INT"/>
+            <column name="description" type="nvarchar(500)"/>
+            <column name="value" type="DECIMAL(18, 2)"/>
+            <column name="payment_content" type="nvarchar(500)"/>
+            <column name="bank_guarantee" type="VARCHAR(50)"/>
+            <column name="address" type="nvarchar(500)"/>
+            <column name="po_date" type="DATETIME"/>
+            <column name="timeline" type="DATETIME"/>
+            <column name="note" type="nvarchar(500)"/>
+            <column name="contract_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-12" author="Tran Tuan Vu (generated)">
+        <createTable tableName="product_service">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_product_service"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="contract_code" type="VARCHAR(100)"/>
+            <column name="po_code" type="VARCHAR(100)"/>
+            <column name="name" type="nvarchar(255)"/>
+            <column name="amount" type="BIGINT"/>
+            <column name="price" type="DECIMAL(18, 2)"/>
+            <column name="made_in" type="nvarchar(100)"/>
+            <column name="vat" type="DECIMAL(18, 2)"/>
+            <column name="product_code" type="VARCHAR(50)"/>
+            <column name="note" type="nvarchar(500)"/>
+            <column name="contrac_id" type="BIGINT"/>
+            <column name="po_id" type="BIGINT"/>
+            <column name="dp_id" type="BIGINT"/>
+            <column name="pl_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-13" author="Tran Tuan Vu (generated)">
+        <createTable tableName="role">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_role"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="name" type="nvarchar(100)"/>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="description" type="nvarchar(500)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-14" author="Tran Tuan Vu (generated)">
+        <createTable tableName="role_function">
+            <column name="function_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_role_function"/>
+            </column>
+            <column name="role_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_role_function"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-15" author="Tran Tuan Vu (generated)">
+        <createTable tableName="user_entity">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_entity"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="username" type="VARCHAR(100)"/>
+            <column name="code" type="VARCHAR(50)"/>
+            <column name="full_name" type="nvarchar(255)"/>
+            <column name="email" type="VARCHAR(500)"/>
+            <column name="phone_number" type="VARCHAR(20)"/>
+            <column name="password" type="VARCHAR(1000)"/>
+            <column name="position" type="nvarchar(100)"/>
+            <column name="note" type="nvarchar(500)"/>
+            <column name="role_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655266068006-16" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="contract_id" baseTableName="bank_guarantee"
+                                 constraintName="FK_BANK_GUARANTEE_ON_CONTRACT" referencedColumnNames="id"
+                                 referencedTableName="contract"/>
+    </changeSet>
+    <changeSet id="1655266068006-17" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="config_id" baseTableName="config_value"
+                                 constraintName="FK_CONFIG_VALUE_ON_CONFIG" referencedColumnNames="id"
+                                 referencedTableName="config"/>
+    </changeSet>
+    <changeSet id="1655266068006-18" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="customer" constraintName="FK_CUSTOMER_ON_ID"
+                                 referencedColumnNames="id" referencedTableName="contract"/>
+    </changeSet>
+    <changeSet id="1655266068006-19" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="po_id" baseTableName="delivery_package"
+                                 constraintName="FK_DELIVERY_PACKAGE_ON_PO" referencedColumnNames="id"
+                                 referencedTableName="period_order"/>
+    </changeSet>
+    <changeSet id="1655266068006-20" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="dp_id" baseTableName="packing_list"
+                                 constraintName="FK_PACKING_LIST_ON_DP" referencedColumnNames="id"
+                                 referencedTableName="delivery_package"/>
+    </changeSet>
+    <changeSet id="1655266068006-21" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="contract_id" baseTableName="period_order"
+                                 constraintName="FK_PERIOD_ORDER_ON_CONTRACT" referencedColumnNames="id"
+                                 referencedTableName="contract"/>
+    </changeSet>
+    <changeSet id="1655266068006-22" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="contrac_id" baseTableName="product_service"
+                                 constraintName="FK_PRODUCT_SERVICE_ON_CONTRAC" referencedColumnNames="id"
+                                 referencedTableName="contract"/>
+    </changeSet>
+    <changeSet id="1655266068006-23" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="dp_id" baseTableName="product_service"
+                                 constraintName="FK_PRODUCT_SERVICE_ON_DP" referencedColumnNames="id"
+                                 referencedTableName="delivery_package"/>
+    </changeSet>
+    <changeSet id="1655266068006-24" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="pl_id" baseTableName="product_service"
+                                 constraintName="FK_PRODUCT_SERVICE_ON_PL" referencedColumnNames="id"
+                                 referencedTableName="packing_list"/>
+    </changeSet>
+    <changeSet id="1655266068006-25" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="po_id" baseTableName="product_service"
+                                 constraintName="FK_PRODUCT_SERVICE_ON_PO" referencedColumnNames="id"
+                                 referencedTableName="period_order"/>
+    </changeSet>
+    <changeSet id="1655266068006-26" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_entity"
+                                 constraintName="FK_USER_ENTITY_ON_ROLE" referencedColumnNames="id"
+                                 referencedTableName="role"/>
+    </changeSet>
+    <changeSet id="1655266068006-27" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="deparment_id" baseTableName="department_user"
+                                 constraintName="fk_depuse_on_department" referencedColumnNames="id"
+                                 referencedTableName="department"/>
+    </changeSet>
+    <changeSet id="1655266068006-28" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="department_user"
+                                 constraintName="fk_depuse_on_user_entity" referencedColumnNames="id"
+                                 referencedTableName="user_entity"/>
+    </changeSet>
+    <changeSet id="1655266068006-29" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="function_id" baseTableName="role_function"
+                                 constraintName="fk_rolfun_on_function" referencedColumnNames="id"
+                                 referencedTableName="function"/>
+    </changeSet>
+    <changeSet id="1655266068006-30" author="Tran Tuan Vu (generated)">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="role_function"
+                                 constraintName="fk_rolfun_on_role" referencedColumnNames="id"
+                                 referencedTableName="role"/>
+    </changeSet>
+
+</databaseChangeLog>
