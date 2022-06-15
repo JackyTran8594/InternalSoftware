@@ -24,7 +24,6 @@ EXPOSE 9200
 ## STAGE 2:RUN nginx###
 # Defining nginx image to be used
 FROM nginx:1.17.1-alpine AS ngi
-COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 RUN rm /etc/nginx/conf.d/default.conf
 COPY conf /etc/nginx
 CMD ["nginx", "-g", "daemon off;"]
