@@ -19,12 +19,12 @@ WORKDIR /app
 #COPY ${JAR_FILE} app.jar
 COPY --from=builders /app/target/InternalSoftware-0.0.1.jar /app/
 ENTRYPOINT ["java","-jar", "InternalSoftware-0.0.1.jar"]
-EXPOSE 9200
+#EXPOSE 9200
 
 ## STAGE 2:RUN nginx###
 # Defining nginx image to be used
-FROM nginx:1.17.1-alpine AS ngi
-RUN rm /etc/nginx/conf.d/default.conf
-COPY conf /etc/nginx
-CMD ["nginx", "-g", "daemon off;"]
+#FROM nginx:1.17.1-alpine AS ngi
+#RUN rm /etc/nginx/conf.d/default.conf
+#COPY conf /etc/nginx
+#CMD ["nginx", "-g", "daemon off;"]
 
