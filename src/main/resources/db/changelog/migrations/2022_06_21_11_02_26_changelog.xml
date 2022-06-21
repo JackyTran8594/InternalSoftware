@@ -1,0 +1,17 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="TRANTUANVU (generated)" id="1655809358316-3">
+        <addColumn tableName="customer">
+            <column name="phone" type="varchar(20)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="TRANTUANVU (generated)" id="1655809358316-4">
+        <dropForeignKeyConstraint baseTableName="customer" constraintName="FK_CUSTOMER_ON_ID"/>
+    </changeSet>
+    <changeSet author="TRANTUANVU (generated)" id="1655809358316-1">
+        <dropPrimaryKey tableName="role_function"/>
+    </changeSet>
+    <changeSet author="TRANTUANVU (generated)" id="1655809358316-2">
+        <addPrimaryKey columnNames="role_id, function_id" tableName="role_function"/>
+    </changeSet>
+</databaseChangeLog>
