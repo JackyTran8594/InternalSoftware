@@ -18,7 +18,7 @@ public class CustomerRepositoryCustomImpl extends BaseCustomRepository<Customer>
                     .append("FROM customer os \n")
                     .append("WHERE 1=1 ");
         } else {
-            sb.append("SELECT r.* \n")
+            sb.append("SELECT os.* \n")
                     .append("FROM customer os \n")
                     .append("WHERE 1=1 ");
         }
@@ -38,10 +38,11 @@ public class CustomerRepositoryCustomImpl extends BaseCustomRepository<Customer>
         }
 
         if(!count && paramNotNullOrEmpty(paramsSearch, "pageSize") && !"0".equalsIgnoreCase(String.valueOf(paramsSearch.get("pageSize")))) {
-                sb.append(" OFFSET :offset ROWS");
+            sb.append(" OFFSET :offset ROWS");
             sb.append(" FETCH NEXT :limit ROWS ONLY");
             params.put("offset", offsetPaging(DataUtils.parseToInt(paramsSearch.get("pageNumber")), DataUtils.parseToInt(paramsSearch.get("pageSize"))));
-            params.put("limit", DataUtils.parseToInt(paramsSearch.get("limit")));
+            Integer limit = !DataUtils.isNullOrEmpty(paramsSearch.get("limit")) ? DataUtils.parseToInt(paramsSearch.get("limit")) : DataUtils.parseToInt(paramsSearch.get("pageSize"));
+            params.put("limit", limit);
         }
 
         return sb.toString();
