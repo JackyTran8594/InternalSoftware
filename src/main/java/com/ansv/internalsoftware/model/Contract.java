@@ -45,8 +45,8 @@ public class Contract extends Auditable<String> implements Serializable {
     @Column(name = "bank_guarantee", length = 50)
     private String bankGuarantee;
 
-    @Column(name = "customer_id")
-    private Long customerId;
+//    @Column(name = "customer_id")
+//    private Long customerId;
 
     @Column(name = "contract_date")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -63,7 +63,6 @@ public class Contract extends Auditable<String> implements Serializable {
 
     @Column(name = "note", columnDefinition="nvarchar(500)")
     private String note;
-
     @OneToMany(mappedBy="contract")
     private Set<PeriodOrder> periodOrders;
 
@@ -74,8 +73,9 @@ public class Contract extends Auditable<String> implements Serializable {
     @OneToMany(mappedBy="contract")
     private Set<ProductService> productService;
 
-    @OneToOne(mappedBy="contract")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
-
+    
 
 }

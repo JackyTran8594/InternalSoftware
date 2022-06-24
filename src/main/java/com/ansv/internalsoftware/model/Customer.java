@@ -1,9 +1,7 @@
 package com.ansv.internalsoftware.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,7 +24,7 @@ public class Customer extends Auditable<String> implements Serializable {
     @Column(name = "name", columnDefinition = "nvarchar(500)")
     private String name;
 
-    @Column(name = "address", columnDefinition = "nvarchar(500)", length = 500)
+    @Column(name = "address", columnDefinition = "nvarchar(500)")
     private String address;
 
     @Column(name = "tax_code", length = 50)
@@ -35,10 +33,11 @@ public class Customer extends Auditable<String> implements Serializable {
     @Column(name = "fax", length = 20)
     private String fax;
 
+    @Column(name = "phone", length = 20)
+    private String phone;
     @Column(name = "description", columnDefinition = "nvarchar(500)")
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @OneToOne(mappedBy = "customer")
     private Contract contract;
 }
