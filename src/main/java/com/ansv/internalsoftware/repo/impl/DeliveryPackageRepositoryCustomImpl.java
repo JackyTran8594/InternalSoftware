@@ -26,11 +26,13 @@ public class DeliveryPackageRepositoryCustomImpl extends BaseCustomRepository<De
         }
 
         if (paramsSearch.containsKey("txtSearch")) {
-            sb.append("AND (dp.dpCode LIKE :txtSearch) OR" +
-                    " (dp.poCode) LIKE :txtSearch) OR (dp.contractCode LIKE :txtSearch)" +
-                    " OR (dp.description LIKE :txtSearch) " +
-                    "OR (dp.address LIKE :txtSearch) \n");
-            params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toString());
+            if(!DataUtils.isNullOrEmpty(paramsSearch.get("txtSearch"))) {
+                sb.append("AND (dp.dpCode LIKE :txtSearch) OR" +
+                        " (dp.poCode) LIKE :txtSearch) OR (dp.contractCode LIKE :txtSearch)" +
+                        " OR (dp.description LIKE :txtSearch) " +
+                        "OR (dp.address LIKE :txtSearch) \n");
+                params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toString());
+            }
         }
 
         if (!count) {

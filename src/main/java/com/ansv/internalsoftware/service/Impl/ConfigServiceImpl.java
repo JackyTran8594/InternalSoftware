@@ -4,7 +4,7 @@ import com.ansv.internalsoftware.dto.response.ConfigDTO;
 import com.ansv.internalsoftware.model.Config;
 import com.ansv.internalsoftware.repo.ConfigRepository;
 import com.ansv.internalsoftware.service.ConfigService;
-import com.ansv.internalsoftware.util.BaseMapper;
+import com.ansv.internalsoftware.mapper.BaseMapper;
 import com.ansv.internalsoftware.util.DataUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;

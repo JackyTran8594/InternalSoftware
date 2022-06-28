@@ -26,10 +26,13 @@ public class DepartmentRepositoryCustomImpl extends BaseCustomRepository<Departm
         }
 
         if (paramsSearch.containsKey("txtSearch")) {
-            sb.append("AND (UPPER(d.name) LIKE :txtSearch) OR" +
-                    " (UPPER(d.code) LIKE :txtSearch) OR (UPPER(d.description) LIKE :txtSearch)" +
-                    " (UPPER(d.note) LIKE :txtSearch) \n");
-            params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toString());
+            if(!DataUtils.isNullOrEmpty(paramsSearch.get("txtSearch"))) {
+
+                sb.append("AND (UPPER(d.name) LIKE :txtSearch) OR" +
+                        " (UPPER(d.code) LIKE :txtSearch) OR (UPPER(d.description) LIKE :txtSearch)" +
+                        " (UPPER(d.note) LIKE :txtSearch) \n");
+                params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toString());
+            }
         }
 
         if (!count) {

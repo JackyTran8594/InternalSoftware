@@ -24,8 +24,10 @@ public class RoleRepositoryCustomImpl extends BaseCustomRepository<Role> impleme
         }
 
         if (paramsSearch.containsKey("txtSearch")) {
-            sb.append("AND (UPPER(r.name) LIKE :txtSearch) OR (UPPER(r.code) LIKE :txtSearch) OR (UPPER(r.description) LIKE :txtSearch)");
-            params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
+            if(!DataUtils.isNullOrEmpty(paramsSearch.get("txtSearch"))) {
+                sb.append("AND (UPPER(r.name) LIKE :txtSearch) OR (UPPER(r.code) LIKE :txtSearch) OR (UPPER(r.description) LIKE :txtSearch)");
+                params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
+            }
         }
 
         if (!count) {

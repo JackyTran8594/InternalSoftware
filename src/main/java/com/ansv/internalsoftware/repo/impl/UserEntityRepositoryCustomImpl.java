@@ -25,13 +25,15 @@ public class UserEntityRepositoryCustomImpl extends BaseCustomRepository<UserEnt
         }
 
         if (paramsSearch.containsKey("txtSearch")) {
-            sb.append("AND (UPPER(u.full_name) LIKE :txtSearch) " +
-                    " OR (UPPER(u.position) LIKE :txtSearch)" +
-                    "OR (UPPER(u.code) LIKE :txtSearch)" +
-                    "OR (UPPER(u.email) LIKE :txtSearch)" +
-                    "OR (UPPER(u.username) LIKE :txtSearch)"
-            );
-            params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
+            if(!DataUtils.isNullOrEmpty(paramsSearch.get("txtSearch"))) {
+                sb.append("AND (UPPER(u.full_name) LIKE :txtSearch) " +
+                        " OR (UPPER(u.position) LIKE :txtSearch)" +
+                        "OR (UPPER(u.code) LIKE :txtSearch)" +
+                        "OR (UPPER(u.email) LIKE :txtSearch)" +
+                        "OR (UPPER(u.username) LIKE :txtSearch)"
+                );
+                params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
+            }
         }
 
         if (!count) {

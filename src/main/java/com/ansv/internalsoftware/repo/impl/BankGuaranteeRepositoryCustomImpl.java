@@ -25,8 +25,10 @@ public class BankGuaranteeRepositoryCustomImpl extends BaseCustomRepository<Role
         }
 
         if (paramsSearch.containsKey("txtSearch")) {
-            sb.append("AND (bank.poCode LIKE :txtSearch) OR (bank.contactCode LIKE :txtSearch) OR (bank.note LIKE :txtSearch)");
-            params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
+            if(!DataUtils.isNullOrEmpty(paramsSearch.get("txtSearch"))) {
+                sb.append("AND (bank.poCode LIKE :txtSearch) OR (bank.contactCode LIKE :txtSearch) OR (bank.note LIKE :txtSearch)");
+                params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
+            }
         }
 
         if (!count) {

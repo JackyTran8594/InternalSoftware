@@ -27,11 +27,13 @@ public class PeriodOrderRepositoryCustomImpl extends BaseCustomRepository<Period
         }
 
         if (paramsSearch.containsKey("txtSearch")) {
-            sb.append("AND (UPPER(po.code) LIKE :txtSearch) OR (UPPER(po.description) LIKE :txtSearch)" +
-                    " OR (UPPER(po.bank_guarantee) LIKE :txtSearch)"
-                    + "OR (UPPER(po.payment_content) LIKE :txtSearch) OR (UPPER(po.address) LIKE :txtSearch)"
-                    + "OR (UPPER(po.note) LIKE :txtSearch)");
-            params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
+            if(!DataUtils.isNullOrEmpty(paramsSearch.get("txtSearch"))) {
+                sb.append("AND (UPPER(po.code) LIKE :txtSearch) OR (UPPER(po.description) LIKE :txtSearch)" +
+                        " OR (UPPER(po.bank_guarantee) LIKE :txtSearch)"
+                        + "OR (UPPER(po.payment_content) LIKE :txtSearch) OR (UPPER(po.address) LIKE :txtSearch)"
+                        + "OR (UPPER(po.note) LIKE :txtSearch)");
+                params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
+            }
         }
 
         if (!count) {

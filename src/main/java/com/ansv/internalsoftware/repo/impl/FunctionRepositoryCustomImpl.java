@@ -26,8 +26,10 @@ public class FunctionRepositoryCustomImpl extends BaseCustomRepository<Function>
         }
 
         if (paramsSearch.containsKey("txtSearch")) {
-            sb.append("AND (func.menu_name LIKE :txtSearch) OR (func.menu_code LIKE :txtSearch) OR (func.description) LIKE :txtSearch)");
-            params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
+            if(!DataUtils.isNullOrEmpty(paramsSearch.get("txtSearch"))) {
+                sb.append("AND (func.menu_name LIKE :txtSearch) OR (func.menu_code LIKE :txtSearch) OR (func.description) LIKE :txtSearch)");
+                params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
+            }
         }
 
         if (!count) {

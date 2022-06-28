@@ -24,11 +24,13 @@ public class ContractRepositoryCustomImpl extends BaseCustomRepository<Contract>
         }
 
         if(paramsSearch.containsKey("txtSearch")) {
-            sb.append("AND (UPPER(c.contractCode) LIKE :txtSearch) OR" +
-                    " (UPPER(c.name) LIKE :txtSearch) OR (UPPER(c.description) LIKE :txtSearch)" +
-                    " (UPPER(c.paymentContent) LIKE :txtSearch) OR (UPPER(c.bankGuarantee) LIKE :txtSearch)) " +
-                    " (UPPER(c.guarantee) LIKE :txtSearch) OR (UPPER(c.note) LIKE :txtSearch)) \n");
-            params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toString());
+            if(!DataUtils.isNullOrEmpty(paramsSearch.get("txtSearch"))) {
+                sb.append("AND (UPPER(c.contractCode) LIKE :txtSearch) OR" +
+                        " (UPPER(c.name) LIKE :txtSearch) OR (UPPER(c.description) LIKE :txtSearch)" +
+                        " (UPPER(c.paymentContent) LIKE :txtSearch) OR (UPPER(c.bankGuarantee) LIKE :txtSearch)) " +
+                        " (UPPER(c.guarantee) LIKE :txtSearch) OR (UPPER(c.note) LIKE :txtSearch)) \n");
+                params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toString());
+            }
         }
 
         if(!count) {

@@ -24,8 +24,10 @@ public class ConfigRepositoryCustomImpl extends BaseCustomRepository<Config> imp
         }
 
         if (paramsSearch.containsKey("txtSearch")) {
-            sb.append("AND (UPPER(os.name) LIKE :txtSearch) OR (UPPER(os.code) LIKE :txtSearch) OR (UPPER(os.note) LIKE :txtSearch");
-            params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
+            if(!DataUtils.isNullOrEmpty(paramsSearch.get("txtSearch"))) {
+                sb.append("AND (UPPER(os.name) LIKE :txtSearch) OR (UPPER(os.code) LIKE :txtSearch) OR (UPPER(os.note) LIKE :txtSearch");
+                params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
+            }
         }
 
         if (!count) {

@@ -26,10 +26,12 @@ public class PackingListRepositoryCustomImpl extends BaseCustomRepository<Packin
         }
 
         if (paramsSearch.containsKey("txtSearch")) {
-            sb.append("AND (os.pl_code LIKE :txtSearch) OR (os.dp_code LIKE :txtSearch) " +
-                    "OR (os.description LIKE :txtSearch)" +
-                    "OR (os.address LIKE :txtSearch)");
-            params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
+            if(!DataUtils.isNullOrEmpty(paramsSearch.get("txtSearch"))) {
+                sb.append("AND (os.pl_code LIKE :txtSearch) OR (os.dp_code LIKE :txtSearch) " +
+                        "OR (os.description LIKE :txtSearch)" +
+                        "OR (os.address LIKE :txtSearch)");
+                params.put("txtSearch", formatLike((String) paramsSearch.get("txtSearch")).toUpperCase());
+            }
         }
 
         if (!count) {

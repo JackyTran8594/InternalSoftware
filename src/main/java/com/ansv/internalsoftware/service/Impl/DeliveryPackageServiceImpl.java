@@ -4,7 +4,7 @@ import com.ansv.internalsoftware.dto.response.DeliveryPackageDTO;
 import com.ansv.internalsoftware.model.DeliveryPackage;
 import com.ansv.internalsoftware.repo.DeliveryPackageRepository;
 import com.ansv.internalsoftware.service.DeliveryPackageService;
-import com.ansv.internalsoftware.util.BaseMapper;
+import com.ansv.internalsoftware.mapper.BaseMapper;
 import com.ansv.internalsoftware.util.DataUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
