@@ -44,10 +44,11 @@ public class DepartmentRepositoryCustomImpl extends BaseCustomRepository<Departm
         }
 
         if (!count && paramNotNullOrEmpty(paramsSearch, "pageSize") && !"0".equalsIgnoreCase(String.valueOf(paramsSearch.get("pageSize")))) {
-            sb.append(" OFFSET :offset ROWS")
-                    .append("FETCH NEXT :limit ROW ONLY");
+            sb.append(" OFFSET :offset ROWS ")
+                    .append(" FETCH NEXT :limit ROW ONLY");
             params.put("offset", offsetPaging(DataUtils.parseToInt(paramsSearch.get("pageNumber")), DataUtils.parseToInt(paramsSearch.get("pageSize"))));
-            params.put("limit", DataUtils.parseToInt(paramsSearch.get("limit")));
+            Integer limit = !DataUtils.isNullOrEmpty(paramsSearch.get("limit")) ? DataUtils.parseToInt(paramsSearch.get("limit")) : DataUtils.parseToInt(paramsSearch.get("pageSize"));
+            params.put("limit", limit);
         }
         return sb.toString();
     }

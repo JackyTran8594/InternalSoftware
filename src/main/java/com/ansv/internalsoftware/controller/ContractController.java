@@ -29,10 +29,10 @@ public class ContractController extends BaseController {
         }
         mapParam.put("pageSize", pageSize);
         mapParam.put("pageNumber", pageNumber);
-        Pageable pageable = pageRequest(new ArrayList<>(), pageSize, pageNumber);
+        Pageable page = pageRequest(new ArrayList<>(), pageNumber, pageSize);
         List<ContractDTO> listData = contractService.search(mapParam);
         Long totalElement = contractService.count(mapParam);
-        return new PageImpl<>(listData, pageable, totalElement);
+        return new PageImpl<>(listData, page, totalElement);
 
     }
 

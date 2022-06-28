@@ -9,6 +9,7 @@ import com.ansv.internalsoftware.util.DataUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -25,7 +26,7 @@ public class ConfigValueServiceImpl implements ConfigValueService {
 
     private static final Logger logger = LoggerFactory.getLogger(ConfigValueServiceImpl.class);
     private static final BaseMapper<ConfigValue, ConfigValueDTO> mapper = new BaseMapper<>(ConfigValue.class, ConfigValueDTO.class);
-
+    @Autowired
     private ConfigValueRepository repository;
 
 
@@ -49,8 +50,8 @@ public class ConfigValueServiceImpl implements ConfigValueService {
             entity = mapper.toPersistenceBean(item);
             entity.setStatus(ACTIVE);
         }
-        entity = repository.save(entity);
-        return mapper.toDtoBean(entity);
+        return mapper.toDtoBean(repository.save(entity));
+
     }
 
     @Override

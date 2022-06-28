@@ -31,10 +31,10 @@ public class UserController extends BaseController {
         }
         mapParam.put("pageNumber", pageNumber);
         mapParam.put("pageSize", pageSize);
-        Pageable pageable = pageRequest(new ArrayList<>(), pageSize, pageNumber);
+        Pageable page = pageRequest(new ArrayList<>(), pageNumber, pageSize);
         List<UserDTO> listData = userService.search(mapParam);
         Long totalElement = userService.count(mapParam);
-        return new PageImpl<>(listData, pageable, totalElement);
+        return new PageImpl<>(listData, page, totalElement);
     }
 
     @PutMapping("")

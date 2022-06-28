@@ -9,6 +9,7 @@ import com.ansv.internalsoftware.util.DataUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -25,7 +26,7 @@ public class DeliveryPackageServiceImpl implements DeliveryPackageService {
     public static final Logger logger = LoggerFactory.getLogger(DeliveryPackageServiceImpl.class);
 
     public static final BaseMapper<DeliveryPackage, DeliveryPackageDTO> mapper = new BaseMapper<>(DeliveryPackage.class, DeliveryPackageDTO.class);
-
+    @Autowired
     private DeliveryPackageRepository repository;
 
     @Override
@@ -48,8 +49,7 @@ public class DeliveryPackageServiceImpl implements DeliveryPackageService {
             entity = mapper.toPersistenceBean(item);
             entity.setStatus(ACTIVE);
         }
-        entity = repository.save(entity);
-        return mapper.toDtoBean(entity);
+        return mapper.toDtoBean(repository.save(entity));
     }
 
     @Override

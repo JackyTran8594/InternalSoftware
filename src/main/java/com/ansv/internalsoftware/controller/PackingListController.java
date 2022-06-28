@@ -29,7 +29,7 @@ public class PackingListController extends BaseController {
         }
         mapParam.put("pageSize", pageSize);
         mapParam.put("pageNumber", pageNumber);
-        Pageable page = pageRequest(new ArrayList<>(), pageSize, pageNumber);
+        Pageable page = pageRequest(new ArrayList<>(), pageNumber, pageSize);
         List<PackingListDTO> listData = service.search(mapParam);
         Long totalElement = service.count(mapParam);
         return new PageImpl<>(listData,page,totalElement);

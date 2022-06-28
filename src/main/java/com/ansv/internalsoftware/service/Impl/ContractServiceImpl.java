@@ -9,6 +9,7 @@ import com.ansv.internalsoftware.util.DataUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -24,7 +25,7 @@ public class ContractServiceImpl implements ContractService {
 
     private static final BaseMapper<Contract, ContractDTO> mapper = new BaseMapper<>(Contract.class, ContractDTO.class);
     private static final Logger logger = LoggerFactory.getLogger(ContractServiceImpl.class);
-
+    @Autowired
     private ContractRepository repository;
 
     @Override
@@ -47,8 +48,8 @@ public class ContractServiceImpl implements ContractService {
             entity = mapper.toPersistenceBean(item);
             entity.setStatus(ACTIVE);
         }
-        entity = repository.save(entity);
-        return mapper.toDtoBean(entity);
+        return mapper.toDtoBean(repository.save(entity));
+
     }
 
     @Override

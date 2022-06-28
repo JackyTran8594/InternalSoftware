@@ -46,7 +46,8 @@ public class PackingListRepositoryCustomImpl extends BaseCustomRepository<Packin
                 sb.append(" OFFSET :offset ROWS");
             sb.append(" FETCH NEXT :limit ROWS ONLY");
             params.put("offset", offsetPaging(DataUtils.parseToInt(paramsSearch.get("pageNumber")), DataUtils.parseToInt(paramsSearch.get("pageSize"))));
-            params.put("limit", DataUtils.parseToInt(paramsSearch.get("limit")));
+            Integer limit = !DataUtils.isNullOrEmpty(paramsSearch.get("limit")) ? DataUtils.parseToInt(paramsSearch.get("limit")) : DataUtils.parseToInt(paramsSearch.get("pageSize"));
+            params.put("limit", limit);
         }
 
         return sb.toString();

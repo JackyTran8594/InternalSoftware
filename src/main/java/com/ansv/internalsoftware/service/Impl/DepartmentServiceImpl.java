@@ -9,6 +9,7 @@ import com.ansv.internalsoftware.util.DataUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,7 +24,7 @@ import static com.ansv.internalsoftware.constants.Constants.ACTIVE;
 public class DepartmentServiceImpl implements DepartmentService {
     private static final Logger logger = LoggerFactory.getLogger(RoleServiceImpl.class);
     private static final BaseMapper<Department, DepartmentDTO> mapper = new BaseMapper<>(Department.class, DepartmentDTO.class);
-
+    @Autowired
     private DepartmentRepository repository;
 
     @Override
@@ -46,8 +47,7 @@ public class DepartmentServiceImpl implements DepartmentService {
             entity = mapper.toPersistenceBean(item);
             entity.setStatus(ACTIVE);
         }
-        entity = repository.save(entity);
-        return mapper.toDtoBean(entity);
+        return mapper.toDtoBean(repository.save(entity));
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.ansv.internalsoftware.util.DataUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -27,7 +28,7 @@ public class PackingListServiceImpl implements PackingListService {
 
     private static final Logger logger = LoggerFactory.getLogger(PackingListServiceImpl.class);
     private static final BaseMapper<PackingList, PackingListDTO> mapper = new BaseMapper<>(PackingList.class, PackingListDTO.class);
-
+    @Autowired
     private PackingListRepository repository;
 
     @Override
@@ -50,8 +51,8 @@ public class PackingListServiceImpl implements PackingListService {
             entity = mapper.toPersistenceBean(item);
             entity.setStatus(ACTIVE);
         }
-        entity = repository.save(entity);
-        return mapper.toDtoBean(entity);
+        return mapper.toDtoBean(repository.save(entity));
+
     }
 
     @Override
