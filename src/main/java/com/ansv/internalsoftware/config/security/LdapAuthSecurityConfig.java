@@ -35,14 +35,14 @@ import javax.servlet.http.HttpServletResponse;
 @Profile({Profiles.LDAP_AUTH_DEV, Profiles.LDAP_AUTH_STAGING})
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
+//@EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 @RequiredArgsConstructor
 public class LdapAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(LdapAuthSecurityConfig.class);
     private final JwtRequestFilter jwtRequestFilter;
     private final LdapUserAuthoritiesPopulator ldapUserAuthoritiesPopulator;
-    private Environment env;
+//    private Environment env;
 
     @Value("${spring.ldap.authen.url:#{null}}")
     private String ldapUrl;

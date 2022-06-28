@@ -1,5 +1,6 @@
 package com.ansv.internalsoftware.config.security;
 
+import com.ansv.internalsoftware.config.Profiles;
 import com.ansv.internalsoftware.service.Impl.UserDetailsServiceImpl;
 import com.ansv.internalsoftware.util.JwtTokenUtil;
 
@@ -9,6 +10,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Profile({Profiles.LDAP_AUTH_DEV, Profiles.LDAP_AUTH_STAGING})
 @Component
 @RequiredArgsConstructor
 @Slf4j
