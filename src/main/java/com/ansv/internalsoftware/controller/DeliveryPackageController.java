@@ -40,8 +40,8 @@ public class DeliveryPackageController extends BaseController {
     }
 
     @PutMapping("/{id}")
-    public DeliveryPackageDTO updateDeliveryPackage(@RequestBody DeliveryPackageDTO item,@RequestParam long id) {
-        item.setId(id);
+    public DeliveryPackageDTO updateDeliveryPackage(@RequestBody DeliveryPackageDTO item) {
+        item.setId(item.getId());
         return service.save(item);
     }
 

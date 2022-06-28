@@ -40,8 +40,8 @@ public class PeriodOrderController extends BaseController {
     }
 
     @PutMapping("/{id}")
-    public PeriodOrderDTO updatePeriodOrder(@RequestBody PeriodOrderDTO item,@RequestParam long id) {
-        item.setId(id);
+    public PeriodOrderDTO updatePeriodOrder(@RequestBody PeriodOrderDTO item) {
+        item.setId(item.getId());
         return service.save(item);
     }
 

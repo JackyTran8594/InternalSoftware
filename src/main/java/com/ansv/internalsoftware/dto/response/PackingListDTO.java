@@ -32,7 +32,7 @@ public class PackingListDTO extends Auditable<String> {
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime pdDate;
+    private LocalDateTime plDate;
 
     private String note;
 

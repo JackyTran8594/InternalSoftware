@@ -41,8 +41,8 @@ public class PackingListController extends BaseController {
     }
 
     @PutMapping("/{id}")
-    public PackingListDTO update(@RequestBody PackingListDTO item,@RequestParam long id) {
-        item.setId(id);
+    public PackingListDTO update(@RequestBody PackingListDTO item) {
+        item.setId(item.getId());
         return service.save(item);
     }
 

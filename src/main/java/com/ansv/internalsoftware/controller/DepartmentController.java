@@ -39,8 +39,8 @@ public class DepartmentController extends BaseController {
     }
 
     @PutMapping("/{id}")
-    public DepartmentDTO updateDeparment(@RequestBody DepartmentDTO item,@RequestParam long id) {
-        item.setId(id);
+    public DepartmentDTO updateDeparment(@RequestBody DepartmentDTO item) {
+        item.setId(item.getId());
         return service.save(item);
     }
 

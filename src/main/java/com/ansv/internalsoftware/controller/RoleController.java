@@ -39,8 +39,8 @@ public class RoleController extends BaseController {
     }
 
     @PutMapping("/{id}")
-    public RoleDTO updateRole(@RequestBody RoleDTO item,@RequestParam long id) {
-        item.setId(id);
+    public RoleDTO updateRole(@RequestBody RoleDTO item) {
+        item.setId(item.getId());
         return service.save(item);
     }
 

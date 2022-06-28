@@ -37,7 +37,7 @@ public class UserController extends BaseController {
         return new PageImpl<>(listData, page, totalElement);
     }
 
-    @PutMapping("")
+    @PutMapping("{/id}")
     public UserDTO updateUser(@RequestBody UserDTO user) {
         return userService.save(user);
     }

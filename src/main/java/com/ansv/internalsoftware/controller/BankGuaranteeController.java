@@ -39,8 +39,8 @@ public class BankGuaranteeController extends BaseController {
     }
 
     @PutMapping("/{id}")
-    public BankGuaranteeDTO update(@RequestBody BankGuaranteeDTO item, @RequestParam long id) {
-        item.setId(id);
+    public BankGuaranteeDTO update(@RequestBody BankGuaranteeDTO item) {
+        item.setId(item.getId());
         return service.save(item);
     }
 

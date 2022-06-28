@@ -42,8 +42,8 @@ public class ConfigController extends BaseController {
     }
 
     @PutMapping("/{id}")
-    public ConfigDTO updateConfig(@RequestBody ConfigDTO item,@RequestParam long id) {
-        item.setId(id);
+    public ConfigDTO updateConfig(@RequestBody ConfigDTO item) {
+        item.setId(item.getId());
         return service.save(item);
     }
 

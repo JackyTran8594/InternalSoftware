@@ -52,7 +52,7 @@ public class DeliveryPackage extends Auditable<String> implements Serializable {
     @Column(name = "DP_date")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime pdDate;
+    private LocalDateTime dpDate;
 
     @Column(name = "note", columnDefinition="nvarchar(500)")
     private String note;

@@ -42,8 +42,8 @@ public class ContractController extends BaseController {
     }
 
     @PutMapping("/{id}")
-    public ContractDTO updateContract(@RequestBody ContractDTO contract, @RequestParam long id) {
-        contract.setId(id);
+    public ContractDTO updateContract(@RequestBody ContractDTO contract) {
+        contract.setId(contract.getId());
         return contractService.save(contract);
     }
 

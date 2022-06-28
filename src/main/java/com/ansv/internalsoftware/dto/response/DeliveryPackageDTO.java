@@ -42,7 +42,7 @@ public class DeliveryPackageDTO extends BaseDTO<String> implements Serializable 
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime pdDate;
+    private LocalDateTime dpDate;
 
     private String note;
 

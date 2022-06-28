@@ -39,8 +39,8 @@ public class FunctionController extends BaseController {
     }
 
     @PutMapping("/{id}")
-    public FunctionDTO update(@RequestBody FunctionDTO item,@RequestParam long id) {
-        item.setId(id);
+    public FunctionDTO update(@RequestBody FunctionDTO item) {
+        item.setId(item.getId());
         return service.save(item);
     }
 

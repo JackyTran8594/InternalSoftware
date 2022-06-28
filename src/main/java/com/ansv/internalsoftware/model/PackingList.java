@@ -41,7 +41,7 @@ public class PackingList extends Auditable<String> implements Serializable {
     @Column(name = "PL_date")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime pdDate;
+    private LocalDateTime plDate;
 
     @Column(name = "note", columnDefinition="nvarchar(500)")
     private String note;
