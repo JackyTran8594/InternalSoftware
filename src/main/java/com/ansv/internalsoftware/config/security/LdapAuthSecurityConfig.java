@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -43,6 +44,24 @@ public class LdapAuthSecurityConfig extends WebSecurityConfigurerAdapter {
     private final LdapUserAuthoritiesPopulator ldapUserAuthoritiesPopulator;
     private Environment env;
 
+    @Value("${spring.ldap.authen.url:#{null}}")
+    private String ldapUrl;
+
+    @Value("${spring.ldap.server.base:#{null}}")
+    private String baseDn;
+
+    @Value("${spring.ldap.authen.managerDn:#{null}}")
+    private String managerDn;
+
+    @Value("${spring.ldap.authen.managerPassword:#{null}}")
+    private String managerPassword;
+    @Value("${spring.ldap.authen.dn-patterns:#{null}}")
+    private String dnPatterns;
+    @Value("${spring.ldap.authen.filter:#{null}}")
+    private String searchFilter;
+
+    @Value("${spring.ldap.authen.port:#{null}}")
+    private Integer port;
 
     @Override
 //    @Autowired
@@ -54,17 +73,17 @@ public class LdapAuthSecurityConfig extends WebSecurityConfigurerAdapter {
                     .ldapAuthentication()
                     // Pass the LDAP patterns for finding the username.
 //				// The key "{0}" will be substituted with the username
-                    .userDnPatterns("CN=users,DC=ansv,DC=vn")
-                    .userSearchBase("CN=users,DC=ansv,DC=vn")
-                    .userSearchFilter("(userPrincipalName={0})")
+                    .userDnPatterns(dnPatterns)
+                    .userSearchBase(baseDn)
+                    .userSearchFilter(searchFilter)
                     // Pass search base as argument for group membership searches.
 //                    .groupSearchBase("ou=users")
-                    .contextSource().url("ldap://172.24.104.6")
-                    .port(389)
+                    .contextSource().url(ldapUrl)
+                    .port(port)
 //                    // DN of the user who will bind to the LDAP server to perform the search
-                    .managerDn("CN=Admin,CN=Users,DC=ansv,DC=vn")
+                    .managerDn(managerDn)
                     // Password of the user who will bind to the LDAP server to perform the search
-                    .managerPassword("123456")
+                    .managerPassword(managerPassword)
                     .and()
 
 //                    .userSearchBase("cn=users")
