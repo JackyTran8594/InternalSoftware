@@ -23,6 +23,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -35,14 +36,15 @@ import javax.servlet.http.HttpServletResponse;
 @Profile({Profiles.LDAP_AUTH_DEV, Profiles.LDAP_AUTH_STAGING})
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 @RequiredArgsConstructor
 public class LdapAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(LdapAuthSecurityConfig.class);
+    private final UserDetailsService userDetailsService;
     private final JwtRequestFilter jwtRequestFilter;
     private final LdapUserAuthoritiesPopulator ldapUserAuthoritiesPopulator;
-//    private Environment env;
+    private Environment env;
 
     @Value("${spring.ldap.authen.url:#{null}}")
     private String ldapUrl;
@@ -68,34 +70,39 @@ public class LdapAuthSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         try {
             authenticationManagerBuilder.inMemoryAuthentication().withUser("superadmin@ansv.vn").password(passwordEncoder().encode("admin@123")).roles("ADMIN");
-//            authenticationManagerBuilder.authenticationProvider(new LdapAuthenticationProvider(env)).eraseCredentials(false);
-            authenticationManagerBuilder
-                    .ldapAuthentication()
-                    // Pass the LDAP patterns for finding the username.
-//				// The key "{0}" will be substituted with the username
-                    .userDnPatterns(dnPatterns)
-                    .userSearchBase(baseDn)
-                    .userSearchFilter(searchFilter)
-                    // Pass search base as argument for group membership searches.
-//                    .groupSearchBase("ou=users")
-                    .contextSource().url(ldapUrl)
-                    .port(port)
-//                    // DN of the user who will bind to the LDAP server to perform the search
-                    .managerDn(managerDn)
-                    // Password of the user who will bind to the LDAP server to perform the search
-                    .managerPassword(managerPassword)
-                    .and()
 
-//                    .userSearchBase("cn=users")
-                    // Configures LDAP compare operation of the user password to authenticate
-//                    .passwordCompare()
-//                    .passwordEncoder(new BCryptPasswordEncoder())
-////
-//                    // Specifies the attribute in the directory which contains the user password.
-//                    // Defaults to "userPassword".
-//                    .passwordAttribute("userPassword")
+            authenticationManagerBuilder.authenticationProvider(
+                            new LdapAuthenticationProvider(env, ldapUrl, baseDn, managerDn,
+                                    managerPassword, searchFilter, userDetailsService))
+                    .eraseCredentials(false);
+
+//            authenticationManagerBuilder
+//                    .ldapAuthentication()
+//                    // Pass the LDAP patterns for finding the username.
+////				// The key "{0}" will be substituted with the username
+//                    .userDnPatterns(dnPatterns)
+//                    .userSearchBase(baseDn)
+//                    .userSearchFilter(searchFilter)
+//                    // Pass search base as argument for group membership searches.
+////                    .groupSearchBase("ou=users")
+//                    .contextSource().url(ldapUrl)
+//                    .port(port)
+////                    // DN of the user who will bind to the LDAP server to perform the search
+//                    .managerDn(managerDn)
+//                    // Password of the user who will bind to the LDAP server to perform the search
+//                    .managerPassword(managerPassword)
 //                    .and()
-                    .ldapAuthoritiesPopulator(ldapUserAuthoritiesPopulator);
+//
+////                    .userSearchBase("cn=users")
+//                    // Configures LDAP compare operation of the user password to authenticate
+////                    .passwordCompare()
+////                    .passwordEncoder(new BCryptPasswordEncoder())
+//////
+////                    // Specifies the attribute in the directory which contains the user password.
+////                    // Defaults to "userPassword".
+////                    .passwordAttribute("userPassword")
+////                    .and()
+//                    .ldapAuthoritiesPopulator(ldapUserAuthoritiesPopulator);
 
         } catch (AuthenticationException e) {
             logger.error(e.getMessage(), e);

@@ -43,7 +43,7 @@ public class AuthenticationController {
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     // @ResponseBody
     public ResponseEntity<?> authenticate(@RequestBody LoginRequest loginRequest) {
@@ -88,12 +88,7 @@ public class AuthenticationController {
                 }
             }
             JwtAuthenticationResponse jwtAuth = new JwtAuthenticationResponse(jwt, userDetails.getUsername(), role);
-            // ResponseEntity<?> response = null;
-            // response = new ResponseEntity<String>("jwtAuth", HttpStatus.OK);
-            // return response;
-             return ResponseEntity.ok().body(jwtAuth);
-//            return new ResponseEntity(new MessageResponse(true, "done"),
-//                    HttpStatus.OK);
+            return ResponseEntity.ok().body(jwtAuth);
 
         } catch (BadCredentialsException e) {
             log.error(e.getMessage(), e);
