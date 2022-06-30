@@ -20,7 +20,7 @@ public class DeliveryPackageRepositoryCustomImpl extends BaseCustomRepository<De
                     .append("FROM delivery_package dp \n")
                     .append("WHERE 1=1 ");
         } else {
-            sb.append("SELECT d.* \n")
+            sb.append("SELECT dp.* \n")
                     .append("FROM delivery_package dp \n")
                     .append("WHERE 1=1 ");
         }
