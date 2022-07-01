@@ -31,7 +31,7 @@ public class Function extends Auditable<String> implements Serializable {
     @Column(name = "action_code")
     private String actionCode;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition="nvarchar(500)")
     private String description;
 
     @Column(name = "parent_code")

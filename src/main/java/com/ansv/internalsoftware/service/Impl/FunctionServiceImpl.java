@@ -58,7 +58,7 @@ public class FunctionServiceImpl implements FunctionService {
 
     @Override
     public List<FunctionDTO> search(Map<String, Object> mapParam) {
-        List<Function> listEntity = repository.search(mapParam, Role.class);
+        List<Function> listEntity = repository.search(mapParam, Function.class);
         List<FunctionDTO> listData = mapper.toDtoBean(listEntity);
         return listData;
     }

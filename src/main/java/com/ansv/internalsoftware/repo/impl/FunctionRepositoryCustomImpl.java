@@ -1,9 +1,7 @@
 package com.ansv.internalsoftware.repo.impl;
 
 import com.ansv.internalsoftware.model.Function;
-import com.ansv.internalsoftware.model.Role;
 import com.ansv.internalsoftware.repo.FunctionRepositoryCustom;
-import com.ansv.internalsoftware.repo.RoleRepositoryCustom;
 import com.ansv.internalsoftware.util.DataUtils;
 
 import java.util.HashMap;
@@ -17,11 +15,11 @@ public class FunctionRepositoryCustomImpl extends BaseCustomRepository<Function>
         StringBuilder sb = new StringBuilder();
         if (count) {
             sb.append("SELECT COUNT(id) \n")
-                    .append("FROM function func \n")
+                    .append("FROM [function] func \n")
                     .append("WHERE 1=1 ");
         } else {
-            sb.append("SELECT r.* \n")
-                    .append("FROM function func \n")
+            sb.append("SELECT func.* \n")
+                    .append("FROM [function] func \n")
                     .append("WHERE 1=1 ");
         }
 
