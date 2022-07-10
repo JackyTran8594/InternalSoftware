@@ -63,6 +63,7 @@ public class Contract extends Auditable<String> implements Serializable {
 
     @Column(name = "note", columnDefinition="nvarchar(500)")
     private String note;
+
     @OneToMany(mappedBy="contract")
     private Set<PeriodOrder> periodOrders;
 

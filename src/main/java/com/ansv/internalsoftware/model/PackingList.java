@@ -12,6 +12,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -49,5 +50,8 @@ public class PackingList extends Auditable<String> implements Serializable {
     @ManyToOne
     @JoinColumn(name="DP_id", nullable=true, referencedColumnName = "id")
     private DeliveryPackage deliveryPackage;
+
+    @OneToMany(mappedBy = "packingList")
+    private Set<ProductService> productServices;
 
 }

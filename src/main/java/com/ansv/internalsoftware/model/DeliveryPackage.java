@@ -64,4 +64,8 @@ public class DeliveryPackage extends Auditable<String> implements Serializable {
     @OneToMany(mappedBy="deliveryPackage")
     private Set<PackingList> packingList;
 
+
+    @OneToMany(mappedBy="deliveryPackage")
+    private Set<ProductService> productServices;
+
 }

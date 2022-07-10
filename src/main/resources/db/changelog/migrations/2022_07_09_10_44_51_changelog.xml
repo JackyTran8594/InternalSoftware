@@ -1,0 +1,39 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="Minh Tran (generated)" id="1657363505263-1">
+        <createTable tableName="template">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="templatePK"/>
+            </column>
+            <column name="created_by" type="varchar(255)"/>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(255)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="status" type="varchar(20)"/>
+            <column name="code" type="varchar(50)"/>
+            <column name="description" type="nvarchar(500)"/>
+            <column name="name" type="nvarchar(500)"/>
+            <column name="path" type="varchar(500)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Minh Tran (generated)" id="1657363505263-2">
+        <createTable tableName="template_mapping">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="template_mappingPK"/>
+            </column>
+            <column name="created_by" type="varchar(255)"/>
+            <column name="created_date" type="datetime2"/>
+            <column name="last_modified_by" type="varchar(255)"/>
+            <column name="last_modified_date" type="datetime2"/>
+            <column name="status" type="varchar(20)"/>
+            <column name="description" type="nvarchar(500)"/>
+            <column name="property" type="varchar(100)"/>
+            <column name="table" type="varchar(100)"/>
+            <column name="variable" type="varchar(100)"/>
+            <column name="template_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Minh Tran (generated)" id="1657363505263-3">
+        <addForeignKeyConstraint baseColumnNames="template_id" baseTableName="template_mapping" constraintName="FKlnoatbscjf3mjorlcfy6mjw8f" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="template" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

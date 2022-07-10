@@ -66,4 +66,6 @@ public class ProductService extends Auditable<String> implements Serializable {
     @JoinColumn(name="PL_id", nullable=true, referencedColumnName = "id")
     private PackingList packingList;
 
+
+
 }
