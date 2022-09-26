@@ -69,7 +69,7 @@ public class AuthenticationController {
                 Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
                 if (principal instanceof UserDetails) {
                     userDetails = (UserDetails) principal;
-                    if (userDetails.getUsername().equals("adminansv")) {
+                    if (userDetails.getUsername().equals("superadmin@ansv.vn")) {
                         role = "ADMIN";
                         permissions.add(role);
                         jwt = jwtTokenProvider.generateToken(userDetails.getUsername(), role, permissions);
